@@ -8,26 +8,12 @@ set -e
 set -u
 
 basedir=`pwd`
-zipname=FMILibrary-2.0.2
-zipfile=releases/${zipname}-src.zip
 
-name=FMILibrary
+name=fmilibrary
 codedir=${basedir}/${name}_code
 builddir=${basedir}/${name}_build
 installdir=${basedir}/${name}
 
-
-if [ -d $codedir ]; then
-    echo "$codedir Already exists, not replacing files!"
-else
-    if [ -f ${zipfile} ]; then
-        unzip -q ${zipfile}
-        mv $zipname $codedir
-    else
-	echo "Warning: ${zipfile} is missing, you need to download it"
-	exit 0
-    fi
-fi
 
 source setHopsanBuildPaths.sh
 

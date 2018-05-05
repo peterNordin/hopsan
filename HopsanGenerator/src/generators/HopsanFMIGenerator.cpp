@@ -1712,7 +1712,7 @@ bool HopsanFMIGenerator::compileAndLinkFMU(const QString &savePath, const QStrin
     printMessage("Compiling C files");
     printMessage("------------------------------------------------------------------------");
 
-    const QString fmiLibDir="Dependencies/FMILibrary";
+    const QString fmiLibDir="Dependencies/fmilibrary";
 
 #ifdef _WIN32
     QFile compileCBatchFile;

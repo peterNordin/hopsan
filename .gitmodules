@@ -41,3 +41,6 @@
 [submodule "Dependencies/releases"]
 	path = Dependencies/releases
 	url = https://github.com/Hopsan/hopsan_deps_releases.git
+[submodule "Dependencies/fmilibrary_code"]
+	path = Dependencies/fmilibrary_code
+	url = https://github.com/svn2github/FMILibrary.git

@@ -25,7 +25,7 @@ cp -a    $srcDir/HopsanCore/src                            $dstDir/HopsanCore
 cp -a    $srcDir/HopsanCore/dependencies                   $dstDir/HopsanCore
 
 mkdir -p                                                   $dstDir/Dependencies
-cp -a    $srcDir/Dependencies/FMILibrary                   $dstDir/Dependencies
+cp -a    $srcDir/Dependencies/fmilibrary                   $dstDir/Dependencies
 
 mkdir -p                                                   $dstDir/componentLibraries
 cp -a    $srcDir/componentLibraries/defaultLibrary         $dstDir/componentLibraries
