@@ -42,6 +42,7 @@
 
 #define CFG_CHECKFORDEVELOPMENTUPDATES "checkfordevelopmentupdates"
 #define CFG_SHOWLICENSEONSTARTUP "showlicenseonstartup2"
+#define CFG_ALLWAYSCLEARLEFTOVERS "allwaysclearleftovers"
 #define CFG_SHOWHIDDENNODEDATAVARIABLES "showhiddennodedatavariables"
 #define CFG_SHOWPOPUPHELP "showpopuphelp"
 #define CFG_NATIVESTYLESHEET "nativestylesheet"

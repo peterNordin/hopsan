@@ -1387,6 +1387,7 @@ void Configuration::registerSettings()
     mBoolSettings.insert(CFG_PROGRESSBAR, true);
     mBoolSettings.insert(CFG_SETPWDTOMWD, false);
     mBoolSettings.insert(CFG_SHOWLICENSEONSTARTUP, true);
+    mBoolSettings.insert(CFG_ALLWAYSCLEARLEFTOVERS, false);
     mBoolSettings.insert(CFG_CHECKFORDEVELOPMENTUPDATES, false);
 #ifdef _WIN32
     mBoolSettings.insert(CFG_PREFERINCLUDEDCOMPILER, true);

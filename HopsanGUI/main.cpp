@@ -51,6 +51,8 @@
 #include "Widgets/HcomWidget.h"
 #include "HcomHandler.h"
 #include "Dialogs/LicenseDialog.h"
+#include "Dialogs/ClearLeftoverDataDialog.h"
+#include "Utilities/GUIUtilities.h"
 
 // Declare global pointers
 MainWindow* gpMainWindow = 0;
@@ -60,6 +62,36 @@ DesktopHandler *gpDesktopHandler = 0;
 CopyStack *gpCopyStack = 0;
 QSplashScreen *gpSplash = 0;
 GUIMessageHandler *gpMessageHandler = 0;
+
+namespace {
+
+void checkLogCacheForOldFiles()
+{
+    QDir logcache(gpDesktopHandler->getLogDataPath());
+    if (logcache.exists())
+    {
+        QStringList enteries = logcache.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+        if (!enteries.isEmpty())
+        {
+            int ret = QDialog::Accepted;
+            if (!gpConfig->getBoolSetting(CFG_ALLWAYSCLEARLEFTOVERS)) {
+                ClearLeftoverDataDialog dialog;
+                QTimer t;
+                t.setSingleShot(true);
+                t.connect(&t, SIGNAL(timeout()), &dialog, SLOT(close()));
+                t.start(10000);
+                ret = dialog.exec();
+                t.stop();
+            }
+
+            if (ret == QDialog::Accepted) {
+                removeDir(logcache.absolutePath());
+            }
+        }
+    }
+}
+
+}
 
 int main(int argc, char *argv[])
 {
@@ -107,7 +139,7 @@ int main(int argc, char *argv[])
     mainwindow.createContents();
 
     // Clear cache folders from left over junk (if Hopsan crashed last time, or was unable to cleanup)
-    gpDesktopHandler->checkLogCacheForOldFiles();
+    checkLogCacheForOldFiles();
 
     // Show main window and initialize workspace
     //QTimer::singleShot(20, &mainwindow, SLOT(showMaximized()));

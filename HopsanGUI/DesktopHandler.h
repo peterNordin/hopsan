@@ -68,8 +68,6 @@ public:
 
     void setCustomTempPath(const QString &tempPath);
 
-    void checkLogCacheForOldFiles();
-
 private:
     QString mExecPath;
 
