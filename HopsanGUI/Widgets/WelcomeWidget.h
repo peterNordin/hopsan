@@ -112,6 +112,8 @@ signals:
 
 public slots:
     void autoHide();
+    void checkForUpdate();
+    void checkForNews();
 
 private slots:
     void updateHoverEffects();
