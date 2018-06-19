@@ -1320,6 +1320,7 @@ void Configuration::registerSettings()
     mStringSettings.insert(CFG_PLOTGFXIMAGEFORMAT, "png");
     mStringSettings.insert(CFG_PLOTGFXDIMENSIONSUNIT, "px");
     mStringSettings.insert(cfg::paths::corelogfile, "");
+    mStringSettings.insert(cfg::timestamps::lastupdatecheck, QDateTime::currentDateTimeUtc().addDays(-1).toString(Qt::ISODate));
 
     // Bool settings
     mBoolSettings.insert(CFG_USEREMOTEADDRESSSERVER, false);

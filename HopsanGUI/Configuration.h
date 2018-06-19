@@ -145,6 +145,11 @@ namespace cfg {
     namespace paths {
         constexpr auto corelogfile = "corelogfile";
     }
+
+    namespace timestamps {
+        constexpr auto lastupdatecheck = "lastupdatecheck";
+        constexpr auto lastnewscheck = "lastnewscheck";
+    }
 }
 
 #include <QMap>

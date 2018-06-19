@@ -358,11 +358,15 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) :
 
     mpVersioncheckNAM = new QNetworkAccessManager(this);
     connect(mpVersioncheckNAM, SIGNAL(finished(QNetworkReply*)), this, SLOT(checkVersion(QNetworkReply*)));
-    mpVersioncheckNAM->get(QNetworkRequest(QUrl(hopsanweblinks::releases)));
+    // Reduce check frequency
+    auto lastCheck = QDateTime::fromString(gpConfig->getStringSetting(cfg::timestamps::lastupdatecheck), Qt::ISODate);
+    if (QDateTime::currentDateTimeUtc() > lastCheck.addDays(1)) {
+        checkForUpdate();
+    }
 
     mpNewsFeedNAM = new QNetworkAccessManager(this);
     connect(mpNewsFeedNAM, SIGNAL(finished(QNetworkReply*)), this, SLOT(showNews(QNetworkReply*)));
-    mpNewsFeedNAM->get(QNetworkRequest(QUrl(hopsanweblinks::news)));
+    checkForNews();
 
     mpNewsScrollWidget = new QWidget(this);
     //mpNewsScrollWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -575,7 +579,16 @@ void WelcomeWidget::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
 }
 
+void WelcomeWidget::checkForNews()
+{
+    mpNewsFeedNAM->get(QNetworkRequest(QUrl(hopsanweblinks::news)));
+}
 
+void WelcomeWidget::checkForUpdate()
+{
+    mpVersioncheckNAM->get(QNetworkRequest(QUrl(hopsanweblinks::releases)));
+    gpConfig->setStringSetting(cfg::timestamps::lastupdatecheck, QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+}
 
 //! @brief Opens selected recent model from the list and closes the welcome dialog.
 void WelcomeWidget::openRecentModel()
