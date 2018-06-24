@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hopsanvalidationconfiguration hvcversion="0.2">
-  <validation hopsancliversion="2.8.0.20170713.1009" time="083722" date="20170714" hopsancoreversion="2.8.0.20170713.1009">
+  <validation time="220810" hopsancoreversion="2.9.0.20180617.1414" date="20180624" hopsanguiversion="2.9.0.20180613.0858">
     <modelfile>../Example Models/Bouncing Ball.hmf</modelfile>
     <hvdfile>Bouncing Ball.hvd</hvdfile>
     <variable name="Position_Transducer#out#Value">
       <timecolumn>0</timecolumn>
       <column>1</column>
-      <tolerance>0.010000</tolerance>
+      <tolerance>0.01</tolerance>
     </variable>
   </validation>
 </hopsanvalidationconfiguration>
-

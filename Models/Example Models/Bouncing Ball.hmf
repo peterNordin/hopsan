@@ -5,7 +5,7 @@
   </requirements>
   <system typename="Subsystem" name="Bouncing_Ball" cqstype="UndefinedCQSType" subtypename="" locked="false">
     <simulationtime start="0" inherit_timestep="true" timestep="1e-05" stop="20"/>
-    <simulationlogsettings numsamples="2048" starttime="0"/>
+    <simulationlogsettings numsamples="8192" starttime="0"/>
     <parameters/>
     <aliases/>
     <hopsangui>
