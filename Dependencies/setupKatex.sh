@@ -5,10 +5,10 @@
 
 basedir=`pwd`
 name=katex
-codedir=${basedir}/${name}_code
-builddir=${basedir}/${name}_build
+codedir=${basedir}/${name}-code
+builddir=${basedir}/${name}-build
 installdir=${basedir}/${name}
 
-cp -a ${codedir}/dist ${installdir}
+cp -a ${codedir} ${installdir}
 
 echo "setupKatex.sh done!"

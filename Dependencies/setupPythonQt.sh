@@ -29,8 +29,8 @@ fi
 pythonqtname="PythonQt${pyqtversion}"
 pythonqtfile=releases/${pythonqtname}.zip
 name=pythonqt
-codedir=${basedir}/${name}_code
-builddir=${basedir}/${name}_build
+codedir=${basedir}/${name}-code
+builddir=${basedir}/${name}-build
 installdir=${basedir}/${name}
 E_BADARGS=65
 

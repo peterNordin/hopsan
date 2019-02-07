@@ -4,12 +4,12 @@ REM Author: Peter Nordin peter.nordin@liu.se
 
 set basedir=%~dp0
 set name=katex
-set codedir=%basedir%\%name%_code
+set codedir=%basedir%\%name%-code
 set installdir=%basedir%\%name%
 
 REM Copy release files
 mkdir %installdir%
-xcopy %codedir%\dist\* %installdir% /Y
+xcopy %codedir%\* %installdir% /Y
 
 echo "setupKatex.bat done"
 if "%HOPSAN_BUILD_SCRIPT_NOPAUSE%" == "" (
