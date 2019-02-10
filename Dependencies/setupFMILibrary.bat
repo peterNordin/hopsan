@@ -6,23 +6,13 @@ REM Author: Peter Nordin peter.nordin@liu.se
 
 setlocal
 set basedir=%~dp0
-set name=FMILibrary
-set zipdir=%name%-2.0.2
-set zipfile=releases\%zipdir%-src.zip
+set name=fmilibrary
 set codedir=%basedir%\%name%-code
 set builddir=%basedir%\%name%-build
 set installdir=%basedir%\%name%
 
 
-REM Unpack
-echo.
-echo Clearing old directory (if it exists)
-if exist %codedir% rd /s/q %codedir%
-echo Unpacking %zipfile%
-tools\7z\7za.exe x %zipfile% -y > nul
-move %zipdir% %codedir%
-
-REM We don want msys sh.exe in the PATH so we have clean it and set it manually
+REM We dont want msys sh.exe in the PATH so we have clean it and set it manually
 set OLDPATH=%PATH%
 set OLDPATH=%OLDPATH:C:\Program Files (x86)\Git\usr\bin;=%
 set OLDPATH=%OLDPATH:C:\Program Files\Git\usr\bin;=%

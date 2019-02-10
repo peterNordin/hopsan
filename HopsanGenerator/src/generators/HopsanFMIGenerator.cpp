@@ -1695,7 +1695,7 @@ bool HopsanFMIGenerator::compileAndLinkFMU(const QString &fmuBuildPath, const QS
     printMessage("Compiling C files");
     printMessage("------------------------------------------------------------------------");
 
-    const QString fmiLibDir=mHopsanRootPath+"/Dependencies/FMILibrary";
+    const QString fmiLibDir=mHopsanRootPath+"/Dependencies/fmilibrary";
 
     bool cCompileOK=false;
 #ifdef _WIN32
