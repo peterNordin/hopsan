@@ -41,7 +41,7 @@ include($${PWD}/../../Dependencies/msgpack.pri)
 
 #--------------------------------------------------------
 # Set the tclap include path
-INCLUDEPATH *= $${PWD}/../../Dependencies/tclap/include
+INCLUDEPATH *= $${PWD}/../../Dependencies/tclap-code/include
 #--------------------------------------------------------
 
 # -------------------------------------------------

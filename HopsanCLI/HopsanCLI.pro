@@ -30,7 +30,7 @@ QMAKE_CXXFLAGS *= -U__STRICT_ANSI__ -Wno-c++0x-compat
 
 #--------------------------------------------------------
 # Set the tclap and rapidxml include path
-INCLUDEPATH *= $${PWD}/../Dependencies/tclap/include
+INCLUDEPATH *= $${PWD}/../Dependencies/tclap-code/include
 INCLUDEPATH *= $${PWD}/../HopsanCore/dependencies/rapidxml
 #--------------------------------------------------------
 

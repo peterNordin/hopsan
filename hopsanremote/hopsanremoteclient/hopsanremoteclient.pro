@@ -19,7 +19,7 @@ lessThan(QT_MAJOR_VERSION, 5){
 
 #--------------------------------------------------------
 # Set the tclap include path
-INCLUDEPATH *= $${PWD}/../../Dependencies/tclap/include
+INCLUDEPATH *= $${PWD}/../../Dependencies/tclap-code/include
 #--------------------------------------------------------
 
 #--------------------------------------------------------

@@ -38,7 +38,7 @@ LIBS += -L$${PWD}/../../lib -lhopsanremotecommon
 
 #--------------------------------------------------------
 # Set the tclap include path
-INCLUDEPATH *= $${PWD}/../../Dependencies/tclap/include
+INCLUDEPATH *= $${PWD}/../../Dependencies/tclap-code/include
 #--------------------------------------------------------
 
 INCLUDEPATH *= $${PWD}/../include
