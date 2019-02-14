@@ -49,6 +49,12 @@
     </releasefile>
   </dependency>
 
+  <dependency name="pythonqt" version="c07f0">
+    <releasefile sha256="67eae2d1e953c09c53bde4a72ec5e162fd67df2ce7f0fbe211af9ecd89d67473">
+      <url>https://github.com/MeVisLab/pythonqt/archive/c07f09fddb9cbb85395578d9836c371635221036.zip</url>
+    </releasefile>
+  </dependency>
+
   <dependency name="pythonqt" version="3.2">
     <releasefile sha1="b85f2cf9a4e546a46dc416bb0e86759983384543">
       <url>https://downloads.sourceforge.net/project/pythonqt/pythonqt/PythonQt-3.2/PythonQt3.2.zip</url>

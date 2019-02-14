@@ -5,4 +5,4 @@
 ./setupMsgpack.sh
 ./setupZeroMQ.sh
 ./setupKatex.sh
-./setupPythonQt.sh release
+./setupPythonQt.sh debug

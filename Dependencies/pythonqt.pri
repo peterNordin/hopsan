@@ -33,24 +33,13 @@ defineTest(have_pythonqt) {
 }
 
 have_local_pythonqt() {
-  INCLUDEPATH *= $${pythonqt_home}/include
-  #TODO Use prf instead
-  exists($${pythonqt_lib}/libPythonQt-Qt5-Python3$${dbg_ext}.so) {
-    LIBS *= -L$${pythonqt_lib} -lPythonQt-Qt5-Python3$${dbg_ext}
-    PYTHONQT_PYVERSION=3
-    export(PYTHONQT_PYVERSION)
-  } else {
-    PYTHONQT_PYVERSION=2
-    export(PYTHONQT_PYVERSION)
-    LIBS *= -L$${pythonqt_lib} -l$${libname}$${dbg_ext}
-  }
+  include($${pythonqt_home}/build/PythonQt.prf)
   # Note! The RPATH is absolute and only meant for dev builds in the IDE, on release runtime paths should be stripped
   QMAKE_RPATHDIR *= $${pythonqt_lib}
   message(Found local PythonQt)
 } else:have_system_pythonqt() {
   CONFIG *= link_pkgconfig
   PKGCONFIG *= PythonQt-Qt5-Python3
-  PYTHONQT_PYVERSION=3
-  export(PYTHONQT_PYVERSION)
+  PKGCONFIG *= python3
   message(Found system pkg-config PythonQt)
 }
