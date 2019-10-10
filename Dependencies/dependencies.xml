@@ -89,20 +89,14 @@
   </dependency>
 
   <dependency name="zeromq">
-    <releasefile sha1="fb6afc8c328e2a49928c44382761d95ac775190b" platform="windows">
-      <url>https://github.com/zeromq/libzmq/releases/download/v4.3.1/zeromq-4.3.1.zip</url>
-    </releasefile>
-    <releasefile sha1="6cce22d830eaf95feff7cab00744df13ad7ab7f3">
-      <url>https://github.com/zeromq/libzmq/releases/download/v4.3.1/zeromq-4.3.1.tar.gz</url>
+    <releasefile sha1="f5788d56519ce9b92cb08523ec761b905b52b90c">
+      <url>https://github.com/zeromq/libzmq/archive/v4.2.5.zip</url>
     </releasefile>
   </dependency>
 
   <dependency name="cppzmq">
-    <releasefile sha256="ee77e9e7bef2d3942edad4717d5ddd53e95b899757bc06c636e49ba42ef83eae" platform="windows">
-      <url>https://github.com/zeromq/cppzmq/archive/v4.3.0.zip</url>
-    </releasefile>
-    <releasefile sha256="27d1f56406ba94ee779e639203218820975cf68174f92fbeae0f645df0fcada4">
-      <url>https://github.com/zeromq/cppzmq/archive/v4.3.0.tar.gz</url>
+    <releasefile sha256="35622836e0801c97c8aa15cec809474d49fa0c88ce0545259a9bdf82540633df">
+      <url>https://github.com/zeromq/cppzmq/archive/ca1ca7caaeaf5bfbc19375e3ca95955496ca6a20.zip</url>
     </releasefile>
   </dependency>
 

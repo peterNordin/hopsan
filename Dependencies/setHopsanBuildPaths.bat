@@ -84,21 +84,13 @@ if not "%HOPSAN_BUILD_MINGW_HOME%" == "" (
 REM Echo expected paths
 echo cmake_path:   %cmake_path%
 echo doxygen_path: %doxygen_path%
-echo msys_path:    %msys_path%
 echo mingw_path:   %mingw_path%
 echo qmake_path:   %qmake_path%
 echo git_path:     %git_path%
 echo gitmsys_path: %gitmsys_path%
-
-REM Avoid duplicate msys in path, add msys if it is available, else add msys shipped with Git for Windows"
-if exist "%msys_path%" (
-	set "msys_to_path=%msys_path%"
-) else (
-	set "msys_to_path=%gitmsys_path%"
-)
-
+echo msys_path:    %msys_path% (This one is not added to PATH automatically)
 echo.
 
-set PATH=%mingw_path%;%qmake_path%;%git_path%;%cmake_path%;%doxygen_path%;%msys_to_path%;%PATH%
+set PATH=%mingw_path%;%qmake_path%;%git_path%;%cmake_path%;%doxygen_path%;%gitmsys_path%;%PATH%
 
 :eof
