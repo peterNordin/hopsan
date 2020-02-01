@@ -88,14 +88,14 @@
   </dependency>
 
   <dependency name="zeromq">
-    <releasefile sha1="f5788d56519ce9b92cb08523ec761b905b52b90c">
-      <url>https://github.com/zeromq/libzmq/archive/v4.2.5.zip</url>
+    <releasefile sha256="24a7002a11bcb67fcdf62ad7298a749330f20d57ce6be6b49ba58ebaf8be5032">
+      <url>https://github.com/zeromq/libzmq/archive/75dfbae0d1dc65312d2aaad6902911a3214f4819.zip</url>
     </releasefile>
   </dependency>
 
   <dependency name="cppzmq">
-    <releasefile sha256="35622836e0801c97c8aa15cec809474d49fa0c88ce0545259a9bdf82540633df">
-      <url>https://github.com/zeromq/cppzmq/archive/ca1ca7caaeaf5bfbc19375e3ca95955496ca6a20.zip</url>
+    <releasefile sha256="e9203391a0b913576153a2ad22a2dc1479b1ec325beb6c46a3237c669aef5a52">
+      <url>https://github.com/zeromq/cppzmq/archive/v4.6.0.tar.gz</url>
     </releasefile>
   </dependency>
 
