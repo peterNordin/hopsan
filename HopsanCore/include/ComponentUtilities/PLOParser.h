@@ -67,7 +67,7 @@ public:
 
 protected:
     std::vector<double> mData;
-    std::vector<double> mPlotScales;
+    std::vector<HString> mPlotQuantitiesOrScales;
     std::vector<HString> mDataNames;
     size_t mNumDataRows, mNumDataCols, mPloVersion;
     HString mErrorString;

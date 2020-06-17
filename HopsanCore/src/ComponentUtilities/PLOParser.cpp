@@ -49,7 +49,7 @@ void PLOParser::clearData()
     mData.clear();
     mDataNames.clear();
     mErrorString.clear();
-    mPlotScales.clear();
+    mPlotQuantitiesOrScales.clear();
     mPloVersion = 0;
     mNumDataCols = 0;
     mNumDataRows = 0;
@@ -102,7 +102,7 @@ bool PLOParser::readFile(const HString &rFilepath)
 
         if ( mNumDataCols < 1 || mNumDataRows < 1 )
         {
-            mErrorString = "No data rows or columns found";
+            mErrorString = "Number of data rows or columns is less than one";
             myfile.close();
             return false;
         }
@@ -115,12 +115,12 @@ bool PLOParser::readFile(const HString &rFilepath)
             myfile >> tmp;
             HString name(tmp.c_str());
 
-            //! @todo isn't there frequency as well
-            if ( (i==0) && (mPloVersion == 1) && (name=="'Time',") )
+            if ( (i==0) && (mPloVersion == 1) && ((name=="'Time',") || (name=="'Frequency',")) )
             {
                 ++mNumDataCols;
             }
-            // Remove ', and ' from names
+            //! @todo Use proper splitting on , and then trimm
+            // Remove ', and ' from names (including , separator)
             name.replace("',", "");
             name.replace("'", "");
 
@@ -129,12 +129,11 @@ bool PLOParser::readFile(const HString &rFilepath)
         }
 
         // Read plotscales
-        mPlotScales.resize(mNumDataCols);
+        mPlotQuantitiesOrScales.reserve(mNumDataCols);
         for (size_t i=0; i<mNumDataCols; ++i)
         {
-            double scale;
-            myfile >> scale;
-            mPlotScales[i] = scale;
+            myfile >> tmp;
+            mPlotQuantitiesOrScales.push_back(HString(tmp.c_str()));
         }
 
         // Read data
@@ -146,7 +145,7 @@ bool PLOParser::readFile(const HString &rFilepath)
             mData[i] = val;
         }
 
-        if (mPloVersion == 1)
+        if (mPloVersion == 1 || mPloVersion == 2 )
         {
             // Read DAT line (not used, ignored in HopsanNG)
             myfile >> tmp;
