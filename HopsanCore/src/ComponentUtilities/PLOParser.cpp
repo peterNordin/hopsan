@@ -103,17 +103,17 @@ bool PLOParser::readFile(std::iostream &rFileStream)
 
     // Read version number
     rFileStream >> mPloVersion;
-    if (mPloVersion < 1 || mPloVersion > 2)
+    if (mPloVersion < 1 || mPloVersion > 3)
     {
         mErrorString = "Incorrect PLO version: " + to_hstring(mPloVersion);
         return false;
     }
 
 
-    // Skip name line
+    // Skip name / meta data line
     getline(rFileStream, tmp); // First remove previous newline
     getline(rFileStream, tmp);
-    //! @todo maybe parse this for model info for plo v2 format
+    //! @todo maybe parse this for model info for plo v3 format
 
     // Read num data
     rFileStream >> mNumDataCols;

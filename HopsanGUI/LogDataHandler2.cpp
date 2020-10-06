@@ -133,7 +133,7 @@ void LogDataHandler2::exportToPlo(const QString &rFilePath, QList<SharedVectorVa
     QTextStream fileStream(&file);
     fileStream.setRealNumberNotation(QTextStream::ScientificNotation);
     fileStream.setRealNumberPrecision(6);
-    QString dateTimeString = QDateTime::currentDateTime().toString();
+    QString dateTimeString = QDateTime::currentDateTime().toUTC().toString(Qt::ISODate);
     QFileInfo ploFileInfo(rFilePath);
     QString modelPath = mpParentModel->getTopLevelSystemContainer()->getModelFileInfo().filePath(); //!< @todo ModelPath info should be in model maybe (but what about external systems in that case) /Peter
     QFileInfo modelFileInfo(modelPath);
