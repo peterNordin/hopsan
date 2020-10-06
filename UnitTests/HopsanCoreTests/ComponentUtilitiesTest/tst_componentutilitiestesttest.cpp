@@ -594,7 +594,7 @@ private Q_SLOTS:
           'temp.PLO'
           2    4
           'Time',    'x', 'y'
-          Time  Position Position
+          'Time'  'Position' 'Position'
           0  10 100
           1  20 200
           2  30 300
@@ -607,8 +607,8 @@ private Q_SLOTS:
           3
           'filename.PLO' 'modelFileName.hmf' '2020-10-06T18:36:05Z' 'HopsanGUI 2.15.0.20200910.1405'
           3    4
-          'Time',    'x', 'y'
-          Time  Position Position
+          'Time'    'x'  'y'
+          'Time:s'  'Position:m' 'Position:m'
           0  10 100
           1  20 200
           2  30 300

@@ -239,18 +239,32 @@ void LogDataHandler2::exportToPlo(const QString &rFilePath, QList<SharedVectorVa
 
     // Write plotScalings line
     // Note! Plotscale was removed in HopsanNG 0.7, for backward compatibility with PLO v1, write ones
-    // Plot v2 prints Quantity names if known, else scale one
-    //! @todo In format 3 we should likely write Quantity:Unit to clarify the values unit
+    // Plo v2 prints Quantity names if known, else scale one
+    // Plo v3 prints Quantity:Unit or Unit if known, else scale one
     for(int i=0; i<variables.size(); ++i)
     {
-        const QString &q = variables[i]->getDataQuantity();
-        if (version==1 || q.isEmpty())
-        {
+        if (version==1) {
             fileStream << "  " << 1.0;
         }
-        else
-        {
-            fileStream << "  " << q;
+        else {
+            const QString &q = variables[i]->getDataQuantity();
+            const QString &u = variables[i]->getDataUnit();
+            QString qu;
+            // If both Quantity and Unit is empty, write '1.0'
+            if (q.isEmpty() && u.isEmpty()) {
+                fileStream << "  '" << 1.0 << "'";
+            }
+            else if (version==2) {
+                qu = q;
+            }
+            else if (version==3) {
+                qu = q+":"+u;
+            }
+            // Use unit if quantity is empty
+            if (q.isEmpty()) {
+                qu = u;
+            }
+            fileStream << "  '" << qu << "'";
         }
     }
     fileStream << "\n";
@@ -488,7 +502,13 @@ void LogDataHandler2::importFromPlo(QString importFilePath)
                     }
                 }
 
-                QStringList dataheader = line.split(",");
+                QStringList dataheader;
+                if (ploVersion >= 3) {
+                    dataheader = line.split(" ", QString::SkipEmptyParts);
+                }
+                else {
+                    dataheader = line.split(",");
+                }
                 for(int c=0; c<nDataColumns; ++c)
                 {
                     QString word;
@@ -499,6 +519,7 @@ void LogDataHandler2::importFromPlo(QString importFilePath)
             // Else check for plot scale
             else if (lineNum == 6)
             {
+                // TODO FIX HERE
                 // Read plot scales
                 QTextStream linestream(&line);
                 for(int c=0; c<nDataColumns; ++c)
