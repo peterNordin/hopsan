@@ -602,6 +602,18 @@ private Q_SLOTS:
           test2.PLO.DAT_-1
           Test Model.hmf)";
 
+        QString ploData3 = R"(
+          'VERSION'
+          3
+          'filename.PLO' 'modelFileName.hmf' '2020-10-06T18:36:05Z' 'HopsanGUI 2.15.0.20200910.1405'
+          3    4
+          'Time',    'x', 'y'
+          Time  Position Position
+          0  10 100
+          1  20 200
+          2  30 300
+          3  40 400)";
+
         QTest::newRow("plo1 0") << ploData1 << "Time" << "x" << true << 0 << 1 << 40.0;
         QTest::newRow("plo1 1") << ploData1 << "Time" << "y" << true << 0 << 2 << 400.0;
         QTest::newRow("plo1 2") << ploData1 << "x" << "y" << true << 1 << 2 << 400.0;
@@ -613,6 +625,12 @@ private Q_SLOTS:
         QTest::newRow("plo2 2") << ploData2 << "x" << "y" << true << 1 << 2 << 400.0;
         QTest::newRow("plo2 3") << ploData2 << "x" << "notExist" << true << 1 << -1 << 40.0;
         QTest::newRow("plo2 4") << ploData2 << "notExist" << "y" << true << -1 << 2 << 40.0;
+
+        QTest::newRow("plo3 0") << ploData3 << "Time" << "x" << true << 0 << 1 << 40.0;
+        QTest::newRow("plo3 1") << ploData3 << "Time" << "y" << true << 0 << 2 << 400.0;
+        QTest::newRow("plo3 2") << ploData3 << "x" << "y" << true << 1 << 2 << 400.0;
+        QTest::newRow("plo3 3") << ploData3 << "x" << "notExist" << true << 1 << -1 << 40.0;
+        QTest::newRow("plo3 4") << ploData3 << "notExist" << "y" << true << -1 << 2 << 40.0;
 
     }
 };
