@@ -152,7 +152,9 @@ bool PLOParser::readFile(std::iostream &rFileStream)
     for (size_t i=0; i<mNumDataCols; ++i)
     {
         rFileStream >> tmp;
-        mPlotQuantitiesOrScales.push_back(HString(tmp.c_str()));
+        HString htmp(tmp.c_str());
+        htmp.replace("'", "");
+        mPlotQuantitiesOrScales.push_back(htmp);
     }
 
     // Read data
