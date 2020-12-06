@@ -48,8 +48,8 @@ class UndoStack;
 class MainWindow;
 class QGraphicsScene;
 class Port;
-class Widget;
-class TextBoxWidget;
+class WidgetObject;
+class TextBoxWidgetObject;
 class QTableView;
 class QRadioButton;
 
@@ -166,7 +166,7 @@ public:
     SystemObject *getParentSystemObject() override;
 
     //GUIModelObjects and GUIWidgets methods
-    void takeOwnershipOf(QList<ModelObject*> &rModeObjectlist, QList<Widget*> &rWidgetList);
+    void takeOwnershipOf(QList<ModelObject*> &rModeObjectlist, QList<WidgetObject*> &rWidgetList);
 
     //GUIModelObject methods
     ModelObject *addModelObject(QString fullTypeName, QPointF position, double rotation=0, SelectionStatusEnumT startSelected = Deselected, NameVisibilityEnumT nameStatus = UseDefault, UndoStatusEnumT undoSettings = Undo);
@@ -194,17 +194,17 @@ public:
     QStringList getAliasNames();
 
     //GUIWidgets methods
-    TextBoxWidget *addTextBoxWidget(QPointF position, UndoStatusEnumT undoSettings=Undo);
-    TextBoxWidget *addTextBoxWidget(QPointF position, int desiredWidgetId, UndoStatusEnumT undoSettings=Undo);
-    void deleteWidget(Widget *pWidget, UndoStatusEnumT undoSettings=Undo);
+    TextBoxWidgetObject *addTextBoxWidget(QPointF position, UndoStatusEnumT undoSettings=Undo);
+    TextBoxWidgetObject *addTextBoxWidget(QPointF position, int desiredWidgetId, UndoStatusEnumT undoSettings=Undo);
+    void deleteWidget(WidgetObject *pWidget, UndoStatusEnumT undoSettings=Undo);
     void deleteWidget(const int id, UndoStatusEnumT undoSettings=Undo);
 
-    QList<Widget*> getWidgets() const;
-    Widget *getWidget(const int id) const;
+    QList<WidgetObject*> getWidgets() const;
+    WidgetObject *getWidget(const int id) const;
 
-    void rememberSelectedWidget(Widget *widget);
-    void forgetSelectedWidget(Widget *widget);
-    QList<Widget *> getSelectedGUIWidgetPtrs();
+    void rememberSelectedWidget(WidgetObject *widget);
+    void forgetSelectedWidget(WidgetObject *widget);
+    QList<WidgetObject *> getSelectedGUIWidgetPtrs();
 
     // Parameter Methods
     QStringList getParameterNames() override;
@@ -464,8 +464,8 @@ protected:
     bool mIsCreatingConnector;
 
     //Widget members
-    QMap<size_t, Widget *> mWidgetMap;
-    QList<Widget *> mSelectedWidgetsList;
+    QMap<size_t, WidgetObject *> mWidgetMap;
+    QList<WidgetObject *> mSelectedWidgetsList;
 
     //Contained object appearance members
     bool mShowSubComponentPorts;

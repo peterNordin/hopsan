@@ -50,7 +50,7 @@
 #include "UndoStack.h"
 #include "GraphicsView.h"
 
-Widget::Widget(QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, QGraphicsItem *pParent)
+WidgetObject::WidgetObject(QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, QGraphicsItem *pParent)
     : WorkspaceObject(pos, rot, startSelected, pSystem, pParent)
 {
     setFlag(QGraphicsItem::ItemIsMovable, true);
@@ -64,17 +64,17 @@ Widget::Widget(QPointF pos, double rot, SelectionStatusEnumT startSelected, Syst
 }
 
 
-int Widget::getWidgetIndex()
+int WidgetObject::getWidgetIndex()
 {
     return mWidgetIndex;
 }
 
-int Widget::type() const
+int WidgetObject::type() const
 {
     return WidgetType;
 }
 
-QVariant Widget::itemChange(GraphicsItemChange change, const QVariant &value)
+QVariant WidgetObject::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if(change == QGraphicsItem::ItemSelectedHasChanged)
     {
@@ -103,13 +103,13 @@ QVariant Widget::itemChange(GraphicsItemChange change, const QVariant &value)
 }
 
 
-void Widget::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void WidgetObject::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    QList<Widget *>::iterator it;
+    QList<WidgetObject *>::iterator it;
 
         //Loop through all selected widgets and register changed positions in undo stack
     bool alreadyClearedRedo = false;
-    QList<Widget *> selectedWidgets = mpParentSystemObject->getSelectedGUIWidgetPtrs();
+    QList<WidgetObject *> selectedWidgets = mpParentSystemObject->getSelectedGUIWidgetPtrs();
     for(int i=0; i<selectedWidgets.size(); ++i)
     {
         if((selectedWidgets[i]->mPreviousPos != selectedWidgets[i]->pos()) && (event->button() == Qt::LeftButton) && !selectedWidgets[i]->mIsResizing)
@@ -138,8 +138,8 @@ void Widget::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-TextBoxWidget::TextBoxWidget(QString text, QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, size_t widgetIndex, QGraphicsItem *pParent)
-    : Widget(pos, rot, startSelected, pSystem, pParent)
+TextBoxWidgetObject::TextBoxWidgetObject(QString text, QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, size_t widgetIndex, QGraphicsItem *pParent)
+    : WidgetObject(pos, rot, startSelected, pSystem, pParent)
 {
     mWidgetIndex = widgetIndex;
 
@@ -177,8 +177,8 @@ TextBoxWidget::TextBoxWidget(QString text, QPointF pos, double rot, SelectionSta
 }
 
 
-TextBoxWidget::TextBoxWidget(const TextBoxWidget &other, SystemObject *pSystem)
-    : Widget(other.pos(), other.rotation(), Deselected, pSystem, 0)
+TextBoxWidgetObject::TextBoxWidgetObject(const TextBoxWidgetObject &other, SystemObject *pSystem)
+    : WidgetObject(other.pos(), other.rotation(), Deselected, pSystem, 0)
 {
     mpBorderItem = new QGraphicsRectItem(other.mpBorderItem->rect(), this);
     if(other.mpBorderItem->isVisible())
@@ -195,18 +195,18 @@ TextBoxWidget::TextBoxWidget(const TextBoxWidget &other, SystemObject *pSystem)
     setLineColor(other.mpTextItem->defaultTextColor());
 }
 
-WidgetTypesEnumT TextBoxWidget::getWidgetType() const
+WidgetTypesEnumT TextBoxWidgetObject::getWidgetType() const
 {
     return TextBoxWidgetType;
 }
 
-QString TextBoxWidget::getHmfTagName() const
+QString TextBoxWidgetObject::getHmfTagName() const
 {
     return HMF_TEXTBOXWIDGETTAG;
 }
 
 
-void TextBoxWidget::saveToDomElement(QDomElement &rDomElement, SaveContentsEnumT contents)
+void TextBoxWidgetObject::saveToDomElement(QDomElement &rDomElement, SaveContentsEnumT contents)
 {
     Q_UNUSED(contents);
 
@@ -248,7 +248,7 @@ void TextBoxWidget::saveToDomElement(QDomElement &rDomElement, SaveContentsEnumT
     xmlLine.setAttribute(HMF_STYLETAG, style);
 }
 
-void TextBoxWidget::loadFromDomElement(QDomElement domElement)
+void TextBoxWidgetObject::loadFromDomElement(QDomElement domElement)
 {
     QFont font;
     QColor textColor, lineColor;
@@ -304,7 +304,7 @@ void TextBoxWidget::loadFromDomElement(QDomElement domElement)
     makeSureBoxNotToSmallForText();
 }
 
-void TextBoxWidget::setText(QString text)
+void TextBoxWidgetObject::setText(QString text)
 {
     mpTextItem->setPlainText(text);
     makeSureBoxNotToSmallForText();
@@ -312,19 +312,19 @@ void TextBoxWidget::setText(QString text)
 }
 
 
-void TextBoxWidget::setFont(QFont font)
+void TextBoxWidgetObject::setFont(QFont font)
 {
     mpTextItem->setFont(font);
     makeSureBoxNotToSmallForText();
     mpSelectionBox->setPassive();
 }
 
-void TextBoxWidget::setTextColor(QColor color)
+void TextBoxWidgetObject::setTextColor(QColor color)
 {
     mpTextItem->setDefaultTextColor(color);
 }
 
-void TextBoxWidget::setLineWidth(int value)
+void TextBoxWidgetObject::setLineWidth(int value)
 {
     QPen borderPen = mpBorderItem->pen();
     borderPen.setWidth(value);
@@ -332,7 +332,7 @@ void TextBoxWidget::setLineWidth(int value)
 }
 
 
-void TextBoxWidget::setLineStyle(Qt::PenStyle style)
+void TextBoxWidgetObject::setLineStyle(Qt::PenStyle style)
 {
     QPen borderPen = mpBorderItem->pen();
     borderPen.setStyle(style);
@@ -340,7 +340,7 @@ void TextBoxWidget::setLineStyle(Qt::PenStyle style)
 }
 
 
-void TextBoxWidget::setLineColor(QColor color)
+void TextBoxWidgetObject::setLineColor(QColor color)
 {
     QPen borderPen = mpBorderItem->pen();
     borderPen.setColor(color);
@@ -348,7 +348,7 @@ void TextBoxWidget::setLineColor(QColor color)
 }
 
 
-void TextBoxWidget::setSize(double w, double h)
+void TextBoxWidgetObject::setSize(double w, double h)
 {
     QPointF posBeforeResize = pos();
     mpBorderItem->setRect(mpBorderItem->rect().x(), mpBorderItem->rect().y(), w, h);
@@ -373,36 +373,36 @@ void TextBoxWidget::setSize(double w, double h)
 }
 
 
-void TextBoxWidget::setBoxVisible(bool boxVisible)
+void TextBoxWidgetObject::setBoxVisible(bool boxVisible)
 {
     mpBorderItem->setVisible(boxVisible);
 }
 
-void TextBoxWidget::makeSureBoxNotToSmallForText()
+void TextBoxWidgetObject::makeSureBoxNotToSmallForText()
 {
     mpBorderItem->setRect(mpBorderItem->rect().united(mpTextItem->boundingRect()));
     refreshWidgetSize();
 }
 
-void TextBoxWidget::resizeBoxToText()
+void TextBoxWidgetObject::resizeBoxToText()
 {
     mpBorderItem->setRect(mpBorderItem->rect().x(), mpBorderItem->rect().y(), mpTextItem->boundingRect().width(), mpTextItem->boundingRect().height());
     refreshWidgetSize();
 }
 
-void TextBoxWidget::resizeTextToBox()
+void TextBoxWidgetObject::resizeTextToBox()
 {
     setReflowText(true);
     mpTextItem->setTextWidth(mpBorderItem->boundingRect().width());
 }
 
-void TextBoxWidget::setReflowText(bool doReflow)
+void TextBoxWidgetObject::setReflowText(bool doReflow)
 {
     mReflowText = doReflow;
 }
 
 
-void TextBoxWidget::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void TextBoxWidgetObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event)
 
@@ -498,7 +498,7 @@ void TextBoxWidget::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void TextBoxWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
+void TextBoxWidgetObject::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
     WorkspaceObject::hoverMoveEvent(event);
 
@@ -537,7 +537,7 @@ void TextBoxWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
         this->setCursor(Qt::SizeVerCursor);
 }
 
-void TextBoxWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void TextBoxWidgetObject::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(mResizeLeft || mResizeRight || mResizeTop || mResizeBottom)
     {
@@ -554,7 +554,7 @@ void TextBoxWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-void TextBoxWidget::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void TextBoxWidgetObject::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     WorkspaceObject::mouseMoveEvent(event);
 
@@ -661,9 +661,9 @@ void TextBoxWidget::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-void TextBoxWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void TextBoxWidgetObject::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    Widget::mouseReleaseEvent(event);
+    WidgetObject::mouseReleaseEvent(event);
     if(mWidthBeforeResize != mpBorderItem->rect().width() || mHeightBeforeResize != mpBorderItem->rect().height())
     {
         mpParentSystemObject->getUndoStackPtr()->newPost();
@@ -674,12 +674,12 @@ void TextBoxWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void TextBoxWidget::refreshSelectionBoxSize()
+void TextBoxWidgetObject::refreshSelectionBoxSize()
 {
     mpSelectionBox->setSize(0.0, 0.0, boundingRect().width(), boundingRect().height());
 }
 
-void TextBoxWidget::deleteMe(UndoStatusEnumT undoSettings)
+void TextBoxWidgetObject::deleteMe(UndoStatusEnumT undoSettings)
 {
     if (!isLocallyLocked() && getModelLockLevel()==NotLocked)
     {
@@ -687,20 +687,20 @@ void TextBoxWidget::deleteMe(UndoStatusEnumT undoSettings)
     }
 }
 
-void TextBoxWidget::flipVertical(UndoStatusEnumT undoSettings)
+void TextBoxWidgetObject::flipVertical(UndoStatusEnumT undoSettings)
 {
     Q_UNUSED(undoSettings);
     // Nothing for now
 }
 
-void TextBoxWidget::flipHorizontal(UndoStatusEnumT undoSettings)
+void TextBoxWidgetObject::flipHorizontal(UndoStatusEnumT undoSettings)
 {
     Q_UNUSED(undoSettings);
     // Nothing for now
 }
 
 
-void TextBoxWidget::updateWidgetFromDialog()
+void TextBoxWidgetObject::updateWidgetFromDialog()
 {
     Qt::PenStyle selectedStyle;
     switch(mpDialogLineStyle->currentIndex())
@@ -762,7 +762,7 @@ void TextBoxWidget::updateWidgetFromDialog()
 }
 
 
-void TextBoxWidget::openFontDialog()
+void TextBoxWidgetObject::openFontDialog()
 {
     bool ok;
     // We need to create a fontinfo object here to figure out what font is actually being used to render the text
@@ -787,7 +787,7 @@ void TextBoxWidget::openFontDialog()
     }
 }
 
-void TextBoxWidget::openTextColorDialog()
+void TextBoxWidgetObject::openTextColorDialog()
 {
     QColor color = QColorDialog::getColor(mSelectedTextColor, gpMainWindowWidget);
     if (color.isValid())
@@ -797,7 +797,7 @@ void TextBoxWidget::openTextColorDialog()
     }
 }
 
-void TextBoxWidget::openLineColorDialog()
+void TextBoxWidgetObject::openLineColorDialog()
 {
     QColor color = QColorDialog::getColor(mSelectedTextColor, gpMainWindowWidget);
     if (color.isValid())
@@ -808,7 +808,7 @@ void TextBoxWidget::openLineColorDialog()
     }
 }
 
-void TextBoxWidget::refreshWidgetSize()
+void TextBoxWidgetObject::refreshWidgetSize()
 {
     resize(mpBorderItem->boundingRect().width(), mpBorderItem->boundingRect().height());
     refreshSelectionBoxSize();

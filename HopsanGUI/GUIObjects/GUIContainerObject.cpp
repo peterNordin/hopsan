@@ -663,11 +663,11 @@ ModelObject* SystemObject::addModelObject(ModelObjectAppearance *pAppearanceData
     }
     else if (componentTypeName == HOPSANGUISCOPECOMPONENTTYPENAME)
     {
-        pNewModelObject = new ScopeComponent(position, rotation, pAppearanceData, this, startSelected, mGfxType);
+        pNewModelObject = new ScopeComponentObject(position, rotation, pAppearanceData, this, startSelected, mGfxType);
     }
     else //Assume some standard component type
     {
-        pNewModelObject = new Component(position, rotation, pAppearanceData, this, startSelected, mGfxType);
+        pNewModelObject = new ComponentObject(position, rotation, pAppearanceData, this, startSelected, mGfxType);
     }
 
     emit checkMessages();
@@ -712,19 +712,19 @@ bool SystemObject::areLossesVisible()
 }
 
 
-TextBoxWidget *SystemObject::addTextBoxWidget(QPointF position, UndoStatusEnumT undoSettings)
+TextBoxWidgetObject *SystemObject::addTextBoxWidget(QPointF position, UndoStatusEnumT undoSettings)
 {
     return addTextBoxWidget(position, 0, undoSettings);
 }
 
-TextBoxWidget *SystemObject::addTextBoxWidget(QPointF position, int desiredWidgetId, UndoStatusEnumT undoSettings)
+TextBoxWidgetObject *SystemObject::addTextBoxWidget(QPointF position, int desiredWidgetId, UndoStatusEnumT undoSettings)
 {
-    TextBoxWidget *pNewTextBoxWidget;
+    TextBoxWidgetObject *pNewTextBoxWidget;
     if (mWidgetMap.contains(desiredWidgetId)) {
         desiredWidgetId = mWidgetMap.keys().last()+1;
     }
     constexpr double angle = 0;
-    pNewTextBoxWidget = new TextBoxWidget("Text", position, angle, Deselected, this, desiredWidgetId);
+    pNewTextBoxWidget = new TextBoxWidgetObject("Text", position, angle, Deselected, this, desiredWidgetId);
     mWidgetMap.insert(pNewTextBoxWidget->getWidgetIndex(), pNewTextBoxWidget);
 
     if(undoSettings == Undo) {
@@ -740,7 +740,7 @@ TextBoxWidget *SystemObject::addTextBoxWidget(QPointF position, int desiredWidge
 //! Works for both text and box widgets
 //! @param pWidget Pointer to widget to remove
 //! @param undoSettings Tells whether or not this shall be registered in undo stack
-void SystemObject::deleteWidget(Widget *pWidget, UndoStatusEnumT undoSettings)
+void SystemObject::deleteWidget(WidgetObject *pWidget, UndoStatusEnumT undoSettings)
 {
     if(undoSettings == Undo)
     {
@@ -755,7 +755,7 @@ void SystemObject::deleteWidget(Widget *pWidget, UndoStatusEnumT undoSettings)
 
 void SystemObject::deleteWidget(const int id, UndoStatusEnumT undoSettings)
 {
-    Widget *pWidget = mWidgetMap.value(id, 0);
+    WidgetObject *pWidget = mWidgetMap.value(id, 0);
     if (pWidget)
     {
         deleteWidget(pWidget, undoSettings);
@@ -882,7 +882,7 @@ bool SystemObject::hasModelObject(const QString &rName) const
 //! @brief Takes ownership of supplied objects, widgets and connectors
 //!
 //! This method assumes that the previous owner have forgotten all about these objects, it however sets itself as new Qtparent, parentContainer and scene, overwriting the old values
-void SystemObject::takeOwnershipOf(QList<ModelObject*> &rModelObjectList, QList<Widget*> &rWidgetList)
+void SystemObject::takeOwnershipOf(QList<ModelObject*> &rModelObjectList, QList<WidgetObject*> &rWidgetList)
 {
     for (int i=0; i<rModelObjectList.size(); ++i)
     {
@@ -1019,21 +1019,21 @@ void SystemObject::takeOwnershipOf(QList<ModelObject*> &rModelObjectList, QList<
 
 
 //! @brief Notifies container object that a gui widget has been selected
-void SystemObject::rememberSelectedWidget(Widget *widget)
+void SystemObject::rememberSelectedWidget(WidgetObject *widget)
 {
     mSelectedWidgetsList.append(widget);
 }
 
 
 //! @brief Notifies container object that a gui widget is no longer selected
-void SystemObject::forgetSelectedWidget(Widget *widget)
+void SystemObject::forgetSelectedWidget(WidgetObject *widget)
 {
     mSelectedWidgetsList.removeAll(widget);
 }
 
 
 //! @brief Returns a list with pointers to the selected GUI widgets
-QList<Widget *> SystemObject::getSelectedGUIWidgetPtrs()
+QList<WidgetObject *> SystemObject::getSelectedGUIWidgetPtrs()
 {
     return mSelectedWidgetsList;
 }
@@ -1251,7 +1251,7 @@ void SystemObject::removeSubConnector(Connector* pConnector, UndoStatusEnumT und
                                                                       pEndP->getParentModelObjectName(),
                                                                       pEndP->getName());
 
-                Component *vComp = pConnector->getVolunectorComponent();
+                ComponentObject *vComp = pConnector->getVolunectorComponent();
                 vComp->scene()->removeItem(vComp);
                 vComp->deleteInHopsanCore();
                 vComp->deleteLater();
@@ -1699,7 +1699,7 @@ void SystemObject::paste(CopyStack *xmlStack)
     QDomElement textBoxElement = copyRoot->firstChildElement(HMF_TEXTBOXWIDGETTAG);
     while(!textBoxElement.isNull())
     {
-        TextBoxWidget *pWidget = loadTextBoxWidget(textBoxElement, this, Undo);
+        TextBoxWidgetObject *pWidget = loadTextBoxWidget(textBoxElement, this, Undo);
         if (pWidget) {
             pWidget->setSelected(true);
             const auto prevPos = pWidget->pos();
@@ -2279,12 +2279,12 @@ QStringList SystemObject::getModelObjectNames() const
 
 
 //! @brief Returns a list with pointers to GUI widgets
-QList<Widget *> SystemObject::getWidgets() const
+QList<WidgetObject *> SystemObject::getWidgets() const
 {
     return mWidgetMap.values();
 }
 
-Widget *SystemObject::getWidget(const int id) const
+WidgetObject *SystemObject::getWidget(const int id) const
 {
     return mWidgetMap.value(id, nullptr);
 }
@@ -2562,7 +2562,7 @@ void SystemObject::deselectSelectedNameText()
 void SystemObject::clearContents()
 {
     ModelObjectMapT::iterator mit;
-    QMap<size_t, Widget *>::iterator wit;
+    QMap<size_t, WidgetObject *>::iterator wit;
 
     qDebug() << "Clearing model objects in " << getName();
     //We cant use for loop over iterators as the maps are modified on each delete (and iterators invalidated)
@@ -4447,7 +4447,7 @@ void SystemObject::saveToDomElement(QDomElement &rDomElement, SaveContentsEnumT 
         if(contents==FullModel)
         {
                 //Save all widgets
-            QMap<size_t, Widget *>::iterator itw;
+            QMap<size_t, WidgetObject *>::iterator itw;
             for(itw = mWidgetMap.begin(); itw!=mWidgetMap.end(); ++itw)
             {
                 itw.value()->saveToDomElement(xmlObjects);
@@ -4807,7 +4807,7 @@ void SystemObject::loadFromDomElement(QDomElement domElement)
                 pVolunector->setEndPort(pEndPort);
 
                 //Make the connector a volunector
-                pVolunector->makeVolunector(dynamic_cast<Component*>(pVolunectorObject));
+                pVolunector->makeVolunector(dynamic_cast<ComponentObject*>(pVolunectorObject));
 
                 //Remove volunector object parent container object
                 mModelObjectMap.remove(pVolunectorObject->getName());

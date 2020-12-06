@@ -4946,7 +4946,7 @@ void HcomHandler::executeAddComponentCommand(const QString cmd)
                 return;
             }
             QString otherName = args[1];
-            Component *pOther = qobject_cast<Component*>(mpModel->getViewContainerObject()->getModelObject(otherName));
+            ComponentObject *pOther = qobject_cast<ComponentObject*>(mpModel->getViewContainerObject()->getModelObject(otherName));
             if(!pOther)
             {
                 HCOMERR("Master component not found.");
@@ -4966,7 +4966,7 @@ void HcomHandler::executeAddComponentCommand(const QString cmd)
                 return;
             }
             QString otherName = args[1];
-            Component *pOther = qobject_cast<Component*>(mpModel->getViewContainerObject()->getModelObject(otherName));
+            ComponentObject *pOther = qobject_cast<ComponentObject*>(mpModel->getViewContainerObject()->getModelObject(otherName));
             if(!pOther)
             {
                 HCOMERR("Master component not found.");
@@ -4986,7 +4986,7 @@ void HcomHandler::executeAddComponentCommand(const QString cmd)
                 return;
             }
             QString otherName = args[1];
-            Component *pOther = qobject_cast<Component*>(mpModel->getViewContainerObject()->getModelObject(otherName));
+            ComponentObject *pOther = qobject_cast<ComponentObject*>(mpModel->getViewContainerObject()->getModelObject(otherName));
             if(!pOther)
             {
                 HCOMERR("Master component not found.");
@@ -5006,7 +5006,7 @@ void HcomHandler::executeAddComponentCommand(const QString cmd)
                 return;
             }
             QString otherName = args[1];
-            Component *pOther = qobject_cast<Component*>(mpModel->getViewContainerObject()->getModelObject(otherName));
+            ComponentObject *pOther = qobject_cast<ComponentObject*>(mpModel->getViewContainerObject()->getModelObject(otherName));
             if(!pOther)
             {
                 HCOMERR("Master component not found.");

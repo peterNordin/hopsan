@@ -46,12 +46,13 @@ class Port;
 class SystemObject;
 class PlotWindow;
 
-class Component : public ModelObject
+class ComponentObject : public ModelObject
 {
     Q_OBJECT
 
 public:
-    Component(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected = Deselected, GraphicsTypeEnumT gfxType = UserGraphics);
+    ComponentObject(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentContainer,
+                    SelectionStatusEnumT startSelected = Deselected, GraphicsTypeEnumT gfxType = UserGraphics);
     void deleteInHopsanCore() override;
 
     bool hasPowerPorts();
@@ -80,11 +81,12 @@ protected:
     void createPorts();
 };
 
-class ScopeComponent final : public Component
+class ScopeComponentObject final : public ComponentObject
 {
     Q_OBJECT
 public:
-    ScopeComponent(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected = Deselected, GraphicsTypeEnumT gfxType = UserGraphics);
+    ScopeComponentObject(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentContainer,
+                         SelectionStatusEnumT startSelected = Deselected, GraphicsTypeEnumT gfxType = UserGraphics);
 
     virtual int type() const override;
 

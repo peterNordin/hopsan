@@ -52,7 +52,7 @@
 #include "LibraryHandler.h"
 
 
-Component::Component(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected, GraphicsTypeEnumT gfxType)
+ComponentObject::ComponentObject(QPointF position, double rotation, ModelObjectAppearance* pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected, GraphicsTypeEnumT gfxType)
     : ModelObject(position, rotation, pAppearanceData, startSelected, gfxType, pParentSystem, pParentSystem)
 {
     // Create the object in core, and get its default core name
@@ -89,7 +89,7 @@ Component::Component(QPointF position, double rotation, ModelObjectAppearance* p
     }
 }
 
-void Component::deleteInHopsanCore()
+void ComponentObject::deleteInHopsanCore()
 {
     //Remove in core
     //! @todo maybe change to delte instead of remove with dodelete yes
@@ -98,7 +98,7 @@ void Component::deleteInHopsanCore()
 
 
 //! @brief Returns whether or not the component has at least one power port
-bool Component::hasPowerPorts()
+bool ComponentObject::hasPowerPorts()
 {
     bool retval = false;
     for(int i=0; i<mPortListPtrs.size(); ++i)
@@ -113,7 +113,7 @@ bool Component::hasPowerPorts()
 
 
 //! @brief Event when double clicking on component icon.
-void Component::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void ComponentObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsWidget::mouseDoubleClickEvent(event);
     if(!mpParentSystemObject->mpModelWidget->getGraphicsView()->isCtrlKeyPressed())
@@ -124,20 +124,20 @@ void Component::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 
 
 //! @brief Returns a string with the component type.
-QString Component::getTypeName() const
+QString ComponentObject::getTypeName() const
 {
     return mModelObjectAppearance.getTypeName();
 }
 
 //! @brief Returns the component CQS type
-QString Component::getTypeCQS() const
+QString ComponentObject::getTypeCQS() const
 {
     return mpParentSystemObject->getCoreSystemAccessPtr()->getSubComponentTypeCQS(this->getName());
 }
 
 
 //! @brief Set a parameter value to be mapped to a System parameter
-bool Component::setParameterValue(QString name, QString value, bool force)
+bool ComponentObject::setParameterValue(QString name, QString value, bool force)
 {
     bool retval =  mpParentSystemObject->getCoreSystemAccessPtr()->setParameterValue(this->getName(), name, value, force);
 
@@ -146,7 +146,7 @@ bool Component::setParameterValue(QString name, QString value, bool force)
 
 //! @brief Set a start value to be mapped to a System parameter
 //! @deprecated
-bool Component::setStartValue(QString portName, QString variable, QString sysParName)
+bool ComponentObject::setStartValue(QString portName, QString variable, QString sysParName)
 {
     Q_UNUSED(variable)
     QString dataName;
@@ -154,7 +154,7 @@ bool Component::setStartValue(QString portName, QString variable, QString sysPar
     return mpParentSystemObject->getCoreSystemAccessPtr()->setParameterValue(this->getName(), dataName, sysParName);
 }
 
-void Component::loadParameterValuesFromFile(QString parameterFile)
+void ComponentObject::loadParameterValuesFromFile(QString parameterFile)
 {
     if(parameterFile.isEmpty()) {
         parameterFile = QFileDialog::getOpenFileName(gpMainWindowWidget, tr("Load Parameter File"),
@@ -183,7 +183,7 @@ void Component::loadParameterValuesFromFile(QString parameterFile)
 
 
 //! @brief Help function to create ports in the component when it is created
-void Component::createPorts()
+void ComponentObject::createPorts()
 {
     QList<QString> names = mModelObjectAppearance.getPortAppearanceMap().keys();
     for (int i=0; i<names.size(); ++i)
@@ -194,12 +194,12 @@ void Component::createPorts()
 
 
 
-int Component::type() const
+int ComponentObject::type() const
 {
     return ComponentType;
 }
 
-QString Component::getHmfTagName() const
+QString ComponentObject::getHmfTagName() const
 {
     return HMF_COMPONENTTAG;
 }
@@ -208,7 +208,7 @@ QString Component::getHmfTagName() const
 //! @brief Decide if component should be visible or not
 //! @details We do not want to run the Qt setVisble function because the item should not be hidden, only the visual parts should be hidden, mouse events should still be processed
 //! @param[in] visible True or False
-void Component::setVisible(bool visible)
+void ComponentObject::setVisible(bool visible)
 {
     // Hide show icon
     mpIcon->setVisible(visible);
@@ -230,7 +230,7 @@ void Component::setVisible(bool visible)
     }
 }
 
-void Component::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
+void ComponentObject::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
     // This will prevent context menus from appearing automatically - they are started manually from mouse release event.
     if(event->reason() == QGraphicsSceneContextMenuEvent::Mouse)
@@ -255,7 +255,7 @@ void Component::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 
 //! @brief Save component coredata to XML Dom Element
 //! @param[in] rDomElement The dom element to save to
-void Component::saveCoreDataToDomElement(QDomElement &rDomElement, SaveContentsEnumT contents)
+void ComponentObject::saveCoreDataToDomElement(QDomElement &rDomElement, SaveContentsEnumT contents)
 {
     ModelObject::saveCoreDataToDomElement(rDomElement, contents);
 
@@ -314,7 +314,7 @@ void Component::saveCoreDataToDomElement(QDomElement &rDomElement, SaveContentsE
     }
 }
 
-QDomElement Component::saveGuiDataToDomElement(QDomElement &rDomElement)
+QDomElement ComponentObject::saveGuiDataToDomElement(QDomElement &rDomElement)
 {
     ModelObject::saveGuiDataToDomElement(rDomElement);
     QDomElement guiStuff = rDomElement.firstChildElement(HMF_HOPSANGUITAG);
@@ -347,7 +347,7 @@ QDomElement Component::saveGuiDataToDomElement(QDomElement &rDomElement)
 }
 
 
-void ScopeComponent::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void ScopeComponentObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsWidget::mouseDoubleClickEvent(event);
 
@@ -394,20 +394,20 @@ void ScopeComponent::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void ScopeComponent::rotate(double angle, UndoStatusEnumT undoSettings)
+void ScopeComponentObject::rotate(double angle, UndoStatusEnumT undoSettings)
 {
     Q_UNUSED(angle)
     Q_UNUSED(undoSettings)
     // Overloaded to do nothing
 }
 
-void ScopeComponent::flipVertical(UndoStatusEnumT undoSettings)
+void ScopeComponentObject::flipVertical(UndoStatusEnumT undoSettings)
 {
     Q_UNUSED(undoSettings)
     // Overloaded to do nothing
 }
 
-void ScopeComponent::flipHorizontal(UndoStatusEnumT undoSettings)
+void ScopeComponentObject::flipHorizontal(UndoStatusEnumT undoSettings)
 {
     Q_UNUSED(undoSettings)
     // Overloaded to do nothing
@@ -415,13 +415,13 @@ void ScopeComponent::flipHorizontal(UndoStatusEnumT undoSettings)
 
 
 
-ScopeComponent::ScopeComponent(QPointF position, double rotation, ModelObjectAppearance *pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected, GraphicsTypeEnumT gfxType)
-    : Component(position, rotation, pAppearanceData, pParentSystem, startSelected, gfxType)
+ScopeComponentObject::ScopeComponentObject(QPointF position, double rotation, ModelObjectAppearance *pAppearanceData, SystemObject *pParentSystem, SelectionStatusEnumT startSelected, GraphicsTypeEnumT gfxType)
+    : ComponentObject(position, rotation, pAppearanceData, pParentSystem, startSelected, gfxType)
 {
     // Nothing special
 }
 
-int ScopeComponent::type() const
+int ScopeComponentObject::type() const
 {
     return ScopeComponentType;
 }

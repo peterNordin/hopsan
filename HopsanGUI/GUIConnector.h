@@ -51,7 +51,7 @@ class WorkspaceObject;
 class Port;
 class SystemObject;
 class SystemObject;
-class Component;
+class ComponentObject;
 
 class Connector : public QGraphicsWidget
 {
@@ -99,8 +99,8 @@ public:
     bool isVolunector() const;
 
     void makeVolunector();
-    void makeVolunector(Component *pComponent);
-    Component* getVolunectorComponent();
+    void makeVolunector(ComponentObject *pComponent);
+    ComponentObject* getVolunectorComponent();
 
     void saveToDomElement(QDomElement &rDomElement);
 
@@ -155,7 +155,7 @@ private:
     QVector<ConnectorGeometryEnumT> mGeometries;
     QVector<QPointF> mPoints;
 
-    Component *mpVolunectorComponent;
+    ComponentObject *mpVolunectorComponent;
 };
 
 
@@ -223,7 +223,7 @@ class Volunector : public Connector
 public:
     Volunector(SystemObject *pParentSystem);
 private:
-    Component *mpVolunectorComponent;
+    ComponentObject *mpVolunectorComponent;
 };
 
 #endif // GUICONNECTOR_H

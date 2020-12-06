@@ -816,8 +816,8 @@ void ModelWidget::lockModelEditingLimited(bool lock)
             }
         }
 
-        QList<Widget*> widgets = mpGraphicsView->getContainerPtr()->getWidgets();
-        for(Widget* pWidget : widgets)
+        QList<WidgetObject*> widgets = mpGraphicsView->getContainerPtr()->getWidgets();
+        for(WidgetObject* pWidget : widgets)
         {
             if (pWidget->graphicsEffect())
             {

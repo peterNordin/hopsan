@@ -52,12 +52,12 @@
 
 enum WidgetTypesEnumT {UndefinedWidgetType, TextBoxWidgetType};
 
-class Widget : public WorkspaceObject
+class WidgetObject : public WorkspaceObject
 {
     Q_OBJECT
 
 public:
-    Widget(QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, QGraphicsItem *pParent=0);
+    WidgetObject(QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, QGraphicsItem *pParent=0);
     int getWidgetIndex();
 
     // Type info
@@ -76,13 +76,13 @@ protected:
 };
 
 
-class TextBoxWidget : public Widget
+class TextBoxWidgetObject : public WidgetObject
 {
     Q_OBJECT
 
 public:
-    TextBoxWidget(QString text, QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, size_t widgetIndex, QGraphicsItem *pParent=0);
-    TextBoxWidget(const TextBoxWidget &other, SystemObject *pSystem);
+    TextBoxWidgetObject(QString text, QPointF pos, double rot, SelectionStatusEnumT startSelected, SystemObject *pSystem, size_t widgetIndex, QGraphicsItem *pParent=0);
+    TextBoxWidgetObject(const TextBoxWidgetObject &other, SystemObject *pSystem);
 
     // Type info
     virtual WidgetTypesEnumT getWidgetType() const;

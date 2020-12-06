@@ -585,7 +585,7 @@ void Connector::makeVolunector()
     ModelObjectAppearance *pAppearance = gpLibraryHandler->getModelObjectAppearancePtr("HydraulicVolume").data();
     if (pAppearance)
     {
-        mpVolunectorComponent = new Component(mpStartPort->pos(), 0, pAppearance, mpParentSystemObject);
+        mpVolunectorComponent = new ComponentObject(mpStartPort->pos(), 0, pAppearance, mpParentSystemObject);
 
         //Let parent container object take ownership of the hidden component
         //    QList<ModelObject*> modelObjectsList;
@@ -599,7 +599,7 @@ void Connector::makeVolunector()
 }
 
 
-void Connector::makeVolunector(Component *pComponent)
+void Connector::makeVolunector(ComponentObject *pComponent)
 {
     mpVolunectorComponent = pComponent;
 
@@ -608,7 +608,7 @@ void Connector::makeVolunector(Component *pComponent)
 }
 
 
-Component *Connector::getVolunectorComponent()
+ComponentObject *Connector::getVolunectorComponent()
 {
     return mpVolunectorComponent;
 }
@@ -1557,8 +1557,8 @@ void ConnectorLine::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
         QString typeName = actionToTypeNameMap.find(selectedAction).value();
 
         ModelObjectAppearance *pAppearance = gpLibraryHandler->getModelObjectAppearancePtr(typeName).data();
-        Component *pNewComponent = new Component(mpParentConnector->getStartPort()->pos(), 0, pAppearance, mpParentConnector->getParentContainer());
-        Component *pOldComponent = mpParentConnector->getVolunectorComponent();
+        ComponentObject *pNewComponent = new ComponentObject(mpParentConnector->getStartPort()->pos(), 0, pAppearance, mpParentConnector->getParentContainer());
+        ComponentObject *pOldComponent = mpParentConnector->getVolunectorComponent();
 
         QString startPort = mpParentConnector->getStartPortName();
         QString endPort = mpParentConnector->getEndPortName();

@@ -338,7 +338,7 @@ void UndoStack::undoOneStep()
             double x_old, y_old;
             QDomElement oldPosElement = stuffElement.firstChildElement("oldpos");
             parseDomValueNode2(oldPosElement, x_old, y_old);
-            TextBoxWidget *pTempWidget = qobject_cast<TextBoxWidget *>(mpParentSystemObject->getWidget(index));
+            TextBoxWidgetObject *pTempWidget = qobject_cast<TextBoxWidgetObject *>(mpParentSystemObject->getWidget(index));
             if (pTempWidget)
             {
                 pTempWidget->setSize(w_old, h_old);
@@ -356,7 +356,7 @@ void UndoStack::undoOneStep()
             QDomElement oldPosElement = stuffElement.firstChildElement("oldpos");
             parseDomValueNode2(oldPosElement, x_old, y_old);
             int id = stuffElement.attribute("index").toInt();
-            Widget *pWidget = mpParentSystemObject->getWidget(id);
+            WidgetObject *pWidget = mpParentSystemObject->getWidget(id);
             if(pWidget)
             {
                 pWidget->setPos(x_old, y_old);
@@ -673,7 +673,7 @@ void UndoStack::redoOneStep()
             double x_new, y_new;
             QDomElement newPosElement = stuffElement.firstChildElement("newpos");
             parseDomValueNode2(newPosElement, x_new, y_new);
-            TextBoxWidget *tempWidget = qobject_cast<TextBoxWidget *>(mpParentSystemObject->mWidgetMap.find(index).value());
+            TextBoxWidgetObject *tempWidget = qobject_cast<TextBoxWidgetObject *>(mpParentSystemObject->mWidgetMap.find(index).value());
             tempWidget->setSize(w_new, h_new);
             tempWidget->setPos(x_new, y_new);
         }
@@ -994,7 +994,7 @@ void UndoStack::registerRemovedAliases(QStringList &aliases)
 }
 
 
-void UndoStack::registerAddedWidget(Widget *item)
+void UndoStack::registerAddedWidget(WidgetObject *item)
 {
     if(mEnabled) {
         QDomElement currentPostElement = getCurrentPost();
@@ -1008,7 +1008,7 @@ void UndoStack::registerAddedWidget(Widget *item)
 }
 
 
-void UndoStack::registerDeletedWidget(Widget *item)
+void UndoStack::registerDeletedWidget(WidgetObject *item)
 {
     if(mEnabled) {
         QDomElement currentPostElement = getCurrentPost();
@@ -1026,7 +1026,7 @@ void UndoStack::registerDeletedWidget(Widget *item)
 //! @param item Pointer to the moved GUI Widget
 //! @param oldPos Previous position
 //! @param newPos New Position
-void UndoStack::registerMovedWidget(Widget *item, QPointF oldPos, QPointF newPos)
+void UndoStack::registerMovedWidget(WidgetObject *item, QPointF oldPos, QPointF newPos)
 {
     qDebug() << "registerMovedWidget(), index = " << item->getWidgetIndex();
 
@@ -1068,7 +1068,7 @@ void UndoStack::registerResizedTextBoxWidget(const int index, const double w_old
     }
 }
 
-void UndoStack::registerModifiedTextBoxWidget(Widget *pItem)
+void UndoStack::registerModifiedTextBoxWidget(WidgetObject *pItem)
 {
     if(mEnabled) {
         QDomElement currentPostElement = getCurrentPost();
@@ -1092,7 +1092,7 @@ void UndoStack::addTextboxwidget(const QDomElement &rStuffElement)
 {
     QDomElement textBoxElement = rStuffElement.firstChildElement(HMF_TEXTBOXWIDGETTAG);
     int id = parseAttributeInt(textBoxElement, "index", 0);
-    TextBoxWidget *pWidget = mpParentSystemObject->addTextBoxWidget(QPointF(1,1), id, NoUndo);
+    TextBoxWidgetObject *pWidget = mpParentSystemObject->addTextBoxWidget(QPointF(1,1), id, NoUndo);
     pWidget->loadFromDomElement(textBoxElement);
 }
 
@@ -1105,7 +1105,7 @@ void UndoStack::removeTextboxWidget(const QDomElement &rStuffElement)
 void UndoStack::modifyTextboxWidget(QDomElement &rStuffElement)
 {
     size_t index = rStuffElement.attribute("index").toInt();
-    TextBoxWidget *pWidget = qobject_cast<TextBoxWidget *>(mpParentSystemObject->getWidget(index));
+    TextBoxWidgetObject *pWidget = qobject_cast<TextBoxWidgetObject *>(mpParentSystemObject->getWidget(index));
     if (pWidget)
     {
         pWidget->saveToDomElement(rStuffElement);

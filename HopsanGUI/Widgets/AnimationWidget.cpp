@@ -253,10 +253,10 @@ AnimationWidget::AnimationWidget(QWidget *parent) :
     }
 
     //Generate list of widgets from container object
-    QList<Widget*> widgets = mpContainer->getWidgets();
+    QList<WidgetObject*> widgets = mpContainer->getWidgets();
     for(int i=0; i<widgets.size(); ++i)
     {
-        TextBoxWidget *pWidget = new TextBoxWidget(*qobject_cast<TextBoxWidget*>(widgets[i]), mpContainer);
+        TextBoxWidgetObject *pWidget = new TextBoxWidgetObject(*qobject_cast<TextBoxWidgetObject*>(widgets[i]), mpContainer);
         //pWidget->setParent(this);
         mpGraphicsScene->addItem(pWidget);
         pWidget->setPos(widgets[i]->pos());

@@ -52,7 +52,7 @@
 //! @param[in] rDomElement The DOM element to load from
 //! @param[in] pContainer The Container Object to load into
 //! @param[in] undoSettings Whether or not to register undo for the operation
-bool loadConnector(QDomElement &rDomElement, SystemObject* pContainer, UndoStatusEnumT undoSettings)
+bool loadConnector(QDomElement &rDomElement, SystemObject* pSystem, UndoStatusEnumT undoSettings)
 {
     // -----First read from DOM element-----
     QString startComponentName, endComponentName, startPortName, endPortName;
@@ -112,12 +112,12 @@ bool loadConnector(QDomElement &rDomElement, SystemObject* pContainer, UndoStatu
 
     // -----Now establish the connection-----
     bool success=false;
-    Port *startPort = pContainer->getModelObjectPort(startComponentName, startPortName);
-    Port *endPort = pContainer->getModelObjectPort(endComponentName, endPortName);
+    Port *startPort = pSystem->getModelObjectPort(startComponentName, startPortName);
+    Port *endPort = pSystem->getModelObjectPort(endComponentName, endPortName);
 
     if (startPort && endPort)
     {
-        Connector* pConn = pContainer->createConnector(startPort, endPort, NoUndo);
+        Connector* pConn = pSystem->createConnector(startPort, endPort, NoUndo);
         if (pConn)
         {
             if(pointVector.isEmpty() && !pConn->isDangling() && !pConn->isBroken())   //Create a diagonal connector if no points were loaded from HMF
@@ -134,7 +134,7 @@ bool loadConnector(QDomElement &rDomElement, SystemObject* pContainer, UndoStatu
 
             if(undoSettings == Undo)
             {
-                pContainer->getUndoStackPtr()->registerAddedConnector(pConn);
+                pSystem->getUndoStackPtr()->registerAddedConnector(pConn);
             }
             if (pConn->isConnected())
             {
@@ -155,7 +155,7 @@ bool loadConnector(QDomElement &rDomElement, SystemObject* pContainer, UndoStatu
 
     if (!success)
     {
-        const QString str("Failed to load connector between: "+startComponentName+"->"+startPortName+" and "+endComponentName+"->"+endPortName+" in system: "+pContainer->getName());
+        const QString str("Failed to load connector between: "+startComponentName+"->"+startPortName+" and "+endComponentName+"->"+endPortName+" in system: "+pSystem->getName());
         gpMessageHandler->addErrorMessage(str, "FailedLoadConnector");
     }
 
@@ -525,7 +525,7 @@ ModelObject* loadSystemPortObject(QDomElement &rDomElement, SystemObject* pSyste
 //! @param[in] doAdd Should loading add the system parameter
 //! @param[in] hmfVersion The HopsanModelFile version used during loading
 //! @param[in] pContainer The Container Object to load into
-void loadSystemParameter(QDomElement &rDomElement, bool doAdd, const QString hmfVersion, SystemObject* pContainer)
+void loadSystemParameter(QDomElement &rDomElement, bool doAdd, const QString hmfVersion, SystemObject* pSystem)
 {
     QString name = rDomElement.attribute(HMF_NAMETAG);
     QString value = rDomElement.attribute(HMF_VALUETAG);
@@ -543,17 +543,17 @@ void loadSystemParameter(QDomElement &rDomElement, bool doAdd, const QString hmf
     CoreParameterData paramData(name, value, type, quantityORunit, "", description);
     if (doAdd)
     {
-        pContainer->setOrAddParameter(paramData, true);
+        pSystem->setOrAddParameter(paramData, true);
     }
     else
     {
-        pContainer->setParameter(paramData, true);
+        pSystem->setParameter(paramData, true);
     }
 }
 
 
 //! @todo We should remove Plot from the name as this is supposed to be usable for more then plotting only
-void loadPlotAlias(QDomElement &rDomElement, SystemObject* pContainer)
+void loadPlotAlias(QDomElement &rDomElement, SystemObject* pSystem)
 {
     QString aliasname, fullName;
 
@@ -578,20 +578,20 @@ void loadPlotAlias(QDomElement &rDomElement, SystemObject* pContainer)
     }
 
     //! @todo maybe should only be in core
-    pContainer->setVariableAlias(fullName,aliasname);
+    pSystem->setVariableAlias(fullName,aliasname);
     //! @todo instead of bool return the unique changed alias should be returned
     //! @todo what about parameter alias or other types
 }
 
 
 //! @todo this function should not be needed, figure out the stupid stuff below then code this function away
-TextBoxWidget *loadTextBoxWidget(QDomElement &rDomElement, SystemObject *pContainer, UndoStatusEnumT undoSettings)
+TextBoxWidgetObject *loadTextBoxWidget(QDomElement &rDomElement, SystemObject *pSystem, UndoStatusEnumT undoSettings)
 {
-    TextBoxWidget *pWidget = pContainer->addTextBoxWidget(QPointF(1,1), NoUndo);
+    TextBoxWidgetObject *pWidget = pSystem->addTextBoxWidget(QPointF(1,1), NoUndo);
     pWidget->loadFromDomElement(rDomElement);
 
     if(undoSettings == Undo) {
-        pContainer->getUndoStackPtr()->registerAddedWidget(pWidget);
+        pSystem->getUndoStackPtr()->registerAddedWidget(pWidget);
     }
 
     pWidget->setSelected(true);     //!< @todo Stupid!

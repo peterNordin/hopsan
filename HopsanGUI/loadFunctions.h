@@ -42,23 +42,23 @@
 class LibraryWidget;
 class ModelObject;
 class SystemObject;
-class TextBoxWidget;
+class TextBoxWidgetObject;
 
 
 ModelObject* loadModelObject(const QDomElement &domElement, SystemObject* pSystem, UndoStatusEnumT undoSettings=Undo);
 
 ModelObject* loadSystemPortObject(QDomElement &rDomElement, SystemObject* pSystem, UndoStatusEnumT undoSettings=Undo);
 
-bool loadConnector(QDomElement &rDomElement, SystemObject* pContainer, UndoStatusEnumT undoSettings=Undo);
+bool loadConnector(QDomElement &rDomElement, SystemObject* pSystem, UndoStatusEnumT undoSettings=Undo);
 
 void loadParameterValue(QDomElement &rDomElement, ModelObject* pObject, UndoStatusEnumT undoSettings=Undo);
 
 void loadStartValue(QDomElement &rDomElement, ModelObject* pObject, UndoStatusEnumT undoSettings=Undo);
 
-void loadSystemParameter(QDomElement &rDomElement, bool doAdd, const QString hmfVersion, SystemObject* pContainer);
+void loadSystemParameter(QDomElement &rDomElement, bool doAdd, const QString hmfVersion, SystemObject* pSystem);
 
-void loadPlotAlias(QDomElement &rDomElement, SystemObject* pContainer);
+void loadPlotAlias(QDomElement &rDomElement, SystemObject* pSystem);
 
-TextBoxWidget* loadTextBoxWidget(QDomElement &rDomElement, SystemObject *pContainer, UndoStatusEnumT undoSettings=Undo);
+TextBoxWidgetObject* loadTextBoxWidget(QDomElement &rDomElement, SystemObject *pSystem, UndoStatusEnumT undoSettings=Undo);
 
 #endif // LOADFUNCTIONS_H

@@ -88,7 +88,7 @@ class GraphicsView;
 class Connector;
 class MainWindow;
 class SystemObject;
-class Widget;
+class WidgetObject;
 class UndoWidget;
 
 class UndoStack
@@ -122,11 +122,11 @@ public:
     void registerNameVisibilityChange(QString objectName, bool isVisible);
     void registerRemovedAliases(QStringList &aliases);
 
-    void registerAddedWidget(Widget *item);
-    void registerDeletedWidget(Widget *item);
-    void registerMovedWidget(Widget *item, QPointF oldPos, QPointF newPos);
+    void registerAddedWidget(WidgetObject *item);
+    void registerDeletedWidget(WidgetObject *item);
+    void registerMovedWidget(WidgetObject *item, QPointF oldPos, QPointF newPos);
     void registerResizedTextBoxWidget(const int index, const double w_old, const double h_old, const double w_new, const double h_new, const QPointF oldPos, const QPointF newPos);
-    void registerModifiedTextBoxWidget(Widget *pItem);
+    void registerModifiedTextBoxWidget(WidgetObject *pItem);
 
 private:
     SystemObject *mpParentSystemObject;
