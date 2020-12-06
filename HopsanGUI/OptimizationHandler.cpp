@@ -53,7 +53,7 @@
 #include "PlotWindow.h"
 #include "PlotArea.h"
 #include "PlotCurve.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "GUIPort.h"
 #include "DesktopHandler.h"
 #include "Widgets/HcomWidget.h"

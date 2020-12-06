@@ -34,11 +34,11 @@
 
 
 #include "MovePortsDialog.h"
-#include "GUIObjects/GUIModelObject.h"
+#include "GUIObjects/ModelObject.h"
 #include "GUIPort.h"
-#include "GUIObjects/GUIContainerObject.h"
-#include "GUIObjects/GUIComponent.h"
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/SystemObject.h"
+#include "GUIObjects/ComponentObject.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 #include "GUIPortAppearance.h"
 #include <algorithm>
 

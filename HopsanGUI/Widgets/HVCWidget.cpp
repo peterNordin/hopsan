@@ -43,7 +43,7 @@
 //Hopsan includes
 #include "common.h"
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "HVCWidget.h"
 #include "ModelHandler.h"
 #include "PlotHandler.h"

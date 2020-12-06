@@ -32,7 +32,7 @@
 //$Id$
 
 #include "QuickNavigationWidget.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 
 #include <QHBoxLayout>
 #include <QGroupBox>

@@ -51,7 +51,7 @@
 #include "HcomHandler.h"
 #include "Utilities/GUIUtilities.h"
 #include "Widgets/HcomWidget.h"
-#include "GUIObjects/GUIModelObject.h"
+#include "GUIObjects/ModelObject.h"
 #include "GUIPort.h"
 
 

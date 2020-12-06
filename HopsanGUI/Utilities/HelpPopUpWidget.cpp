@@ -46,7 +46,7 @@
 #include "ModelHandler.h"
 #include "Dialogs/SensitivityAnalysisDialog.h"
 #include "Widgets/LibraryWidget.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 
 
 HelpPopUpWidget::HelpPopUpWidget(QWidget *pParent)

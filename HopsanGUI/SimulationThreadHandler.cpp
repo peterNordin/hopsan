@@ -37,7 +37,7 @@
 #include "Configuration.h"
 #include "common.h"
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 
 void printRemoteCoreMessages(GUIMessageHandler *pMessageHandler, QVector<QString> &rTypes, QVector<QString> &rTags, QVector<QString> &rMessages)
 {

@@ -37,7 +37,7 @@
 #include "UndoStack.h"
 #include "ModelWidget.h"
 #include "Utilities/GUIUtilities.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "common.h"
 #include "global.h"
 #include "ModelHandler.h"

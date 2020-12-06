@@ -35,9 +35,9 @@
 
 #include "global.h"
 #include "DesktopHandler.h"
-#include "GUIObjects/GUIModelObject.h"
-#include "GUIObjects/GUIContainerObject.h"
-#include "GUIObjects/GUIWidgets.h"
+#include "GUIObjects/ModelObject.h"
+#include "GUIObjects/SystemObject.h"
+#include "GUIObjects/WidgetObject.h"
 #include "GUIConnector.h"
 #include "GUIPort.h"
 #include "LibraryHandler.h"

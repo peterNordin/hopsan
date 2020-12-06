@@ -44,7 +44,7 @@
 #include <QLabel>
 
 //Hopsan includes
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 
 //Forward declarations
 class LibraryHandler;

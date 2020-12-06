@@ -22,19 +22,10 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIComponent.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the GUI class representing Components
-//!
-//$Id$
+#ifndef COMPONENTOBJECT_H
+#define COMPONENTOBJECT_H
 
-#ifndef GUICOMPONENT_H
-#define GUICOMPONENT_H
-
-#include "GUIModelObject.h"
+#include "ModelObject.h"
 #include "common.h"
 #include "Utilities/XMLUtilities.h"
 
@@ -99,4 +90,4 @@ protected:
     QPointer<PlotWindow> mpPlotWindow;
 };
 
-#endif // GUICOMPONENT_H
+#endif // COMPONENTOBJECT_H

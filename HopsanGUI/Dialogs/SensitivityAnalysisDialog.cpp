@@ -46,7 +46,7 @@
 #include "DesktopHandler.h"
 #include "Dialogs/SensitivityAnalysisDialog.h"
 #include "Utilities/HelpPopUpWidget.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Utilities/GUIUtilities.h"
 #include "Widgets/ModelWidget.h"
 #include "ModelHandler.h"

@@ -47,7 +47,7 @@ constexpr auto fmus = "FMUs";
 
 //Hopsan includes
 #include "common.h"
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 
 //! @brief Component Library metadata class
 class ComponentLibrary

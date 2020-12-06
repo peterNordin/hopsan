@@ -72,11 +72,11 @@
 #include "Configuration.h"
 #include "CoreAccess.h"
 #include "DesktopHandler.h"
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 #include "ModelHandler.h"
 #include "version_gui.h"
 #include "MessageHandler.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "GeneratorUtils.h"
 #include "Utilities/GUIUtilities.h"
 

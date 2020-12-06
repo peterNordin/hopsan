@@ -45,7 +45,7 @@
 #include "MessageHandler.h"
 #include "LibraryHandler.h"
 #include "GUIObjects/AnimatedComponent.h"
-#include "GUIObjects/GUIModelObject.h"
+#include "GUIObjects/ModelObject.h"
 #include "AnimatedIconPropertiesDialog.h"
 #include "Configuration.h"
 

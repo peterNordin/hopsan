@@ -29,7 +29,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "MessageHandler.h"
 #include "global.h"
 

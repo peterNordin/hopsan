@@ -52,7 +52,7 @@
 #endif
 
 #include "../global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "common.h"
 #include "Configuration.h"
 #include "DesktopHandler.h"

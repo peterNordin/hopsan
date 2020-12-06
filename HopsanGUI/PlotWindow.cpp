@@ -44,7 +44,7 @@
 #include <QDesktopWidget>
 
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Widgets/PlotWidget2.h"
 #include "MessageHandler.h"
 #include "Widgets/ModelWidget.h"

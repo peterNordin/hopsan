@@ -37,7 +37,7 @@
 #include <QMessageBox>
 #include <QLocale>
 
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 #include "MessageHandler.h"
 #include "global.h"
 

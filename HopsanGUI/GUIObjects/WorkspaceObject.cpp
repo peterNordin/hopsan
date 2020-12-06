@@ -33,9 +33,9 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-#include "GUIObject.h"
-#include "GUIObjects/GUIContainerObject.h"
-#include "GUIObjects/GUIWidgets.h"
+#include "WorkspaceObject.h"
+#include "GUIObjects/SystemObject.h"
+#include "GUIObjects/WidgetObject.h"
 #include "GraphicsView.h"
 #include "Widgets/ModelWidget.h"
 #include "UndoStack.h"

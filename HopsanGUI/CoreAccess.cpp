@@ -35,7 +35,7 @@
 
 #include "CoreAccess.h"
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Configuration.h"
 #include "DesktopHandler.h"
 #include "LibraryHandler.h"

@@ -22,17 +22,8 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIObject.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the GUIObject class (The baseclass for all objects)
-//!
-//$Id$
-
-#ifndef GUIOBJECT_H
-#define GUIOBJECT_H
+#ifndef WORKSPACEOBJECT_H
+#define WORKSPACEOBJECT_H
 
 #include <QGraphicsWidget>
 #include <QObject>
@@ -141,4 +132,4 @@ protected:
 
 
 
-#endif // GUIOBJECT_H
+#endif // WORKSPACEOBJECT_H

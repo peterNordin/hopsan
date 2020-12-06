@@ -32,7 +32,7 @@
 //$Id$
 
 #include "global.h"
-#include "GUIModelObjectAppearance.h"
+#include "ModelObjectAppearance.h"
 #include "Utilities/GUIUtilities.h"
 #include "LibraryHandler.h"
 #include "Utilities/XMLUtilities.h"

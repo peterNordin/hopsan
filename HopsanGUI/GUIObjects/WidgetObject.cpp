@@ -43,8 +43,8 @@
 #include <QGraphicsRectItem>
 
 #include "global.h"
-#include "GUIWidgets.h"
-#include "GUIContainerObject.h"
+#include "WidgetObject.h"
+#include "SystemObject.h"
 #include "Widgets/ModelWidget.h"
 #include "Utilities/GUIUtilities.h"
 #include "UndoStack.h"

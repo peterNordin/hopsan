@@ -48,7 +48,7 @@
 //Hopsan includes
 #include "global.h"
 #include "Configuration.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "ModelHandler.h"
 #include "PlotCurve.h"
 #include "PlotTab.h"

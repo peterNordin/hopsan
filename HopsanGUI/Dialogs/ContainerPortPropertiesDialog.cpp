@@ -41,8 +41,8 @@
 #include <QPushButton>
 
 #include "global.h"
-#include "GUIObjects/GUIContainerPort.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemPortObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Configuration.h"
 
 //! @brief Constructor for the container properties dialog

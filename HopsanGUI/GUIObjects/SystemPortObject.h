@@ -22,19 +22,10 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIContainerPort.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the ContainerPort class
-//!
-//$Id$
+#ifndef SYSTEMPORTOBJECT_H
+#define SYSTEMPORTOBJECT_H
 
-#ifndef GUICONTAINERPORT_H
-#define GUICONTAINERPORT_H
-
-#include "GUIModelObject.h"
+#include "ModelObject.h"
 
 class SystemPortObject : public ModelObject
 {

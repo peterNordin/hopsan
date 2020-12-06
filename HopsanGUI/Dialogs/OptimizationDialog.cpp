@@ -57,7 +57,7 @@
 #include "DesktopHandler.h"
 #include "Dialogs/OptimizationDialog.h"
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "GUIPort.h"
 #include "HcomHandler.h"
 #include "Utilities/HelpPopUpWidget.h"

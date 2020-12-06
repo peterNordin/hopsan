@@ -42,8 +42,8 @@
 #include <QGraphicsSvgItem>
 #include <QGraphicsColorizeEffect>
 
-#include "GUIObject.h"
-#include "GUIModelObjectAppearance.h"
+#include "WorkspaceObject.h"
+#include "ModelObjectAppearance.h"
 #include "LogVariable.h"
 
 class AnimationWidget;

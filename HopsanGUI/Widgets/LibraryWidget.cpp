@@ -50,7 +50,7 @@
 #include "LibraryHandler.h"
 #include "CoreAccess.h"
 #include "Utilities/HelpPopUpWidget.h"
-#include "GUIObjects/GUIModelObjectAppearance.h"
+#include "GUIObjects/ModelObjectAppearance.h"
 #include "ProjectTabWidget.h"
 #include "MessageHandler.h"
 #include "Configuration.h"

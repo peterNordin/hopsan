@@ -40,10 +40,10 @@
 #include "GUIObjects/AnimatedComponent.h"
 #include "Widgets/ModelWidget.h"
 #include "GUIPort.h"
-#include "GUIObjects/GUIModelObject.h"
+#include "GUIObjects/ModelObject.h"
 #include "GUIConnectorAppearance.h"
 #include "GUIConnector.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Widgets/AnimationWidget.h"
 
 class UndoStack;

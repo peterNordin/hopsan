@@ -22,21 +22,12 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIContainerObject.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the GUI Container class (base class for Systems and Groups)
-//!
-//$Id$
-
-#ifndef GUICONTAINEROBJECT_H
-#define GUICONTAINEROBJECT_H
+#ifndef SYSTEMOBJECT_H
+#define SYSTEMOBJECT_H
 
 #include <QSlider>
 
-#include "GUIModelObject.h"
+#include "ModelObject.h"
 #include "CopyStack.h"
 #include "LogDataHandler2.h"
 #include "GraphicsViewPort.h"
@@ -521,4 +512,4 @@ private:
     SensitivityAnalysisSettings mSensSettings;
 };
 
-#endif // GUICONTAINEROBJECT_H
+#endif // SYSTEMOBJECT_H

@@ -94,7 +94,7 @@
 
 //! @todo maybe we can make sure that we don't need to include these here
 #include "GraphicsView.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 
 // Declare (create) global pointers that will point to MainWindow children
 PlotHandler *gpPlotHandler = 0;

@@ -42,7 +42,7 @@
 #include "DesktopHandler.h"
 #include "GraphicsView.h"
 #include "GraphicsViewPort.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "MessageHandler.h"
 #include "MainWindow.h"
 #include "ModelHandler.h"

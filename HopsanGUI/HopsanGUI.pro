@@ -187,6 +187,13 @@ RC_FILE = HOPSANGUI.rc
 # -------------------------------------------------
 SOURCES += main.cpp \
     BuiltinTests.cpp \
+    GUIObjects/ComponentObject.cpp \
+    GUIObjects/ModelObject.cpp \
+    GUIObjects/ModelObjectAppearance.cpp \
+    GUIObjects/SystemObject.cpp \
+    GUIObjects/SystemPortObject.cpp \
+    GUIObjects/WidgetObject.cpp \
+    GUIObjects/WorkspaceObject.cpp \
     MainWindow.cpp \
     Widgets/ProjectTabWidget.cpp \
     GUIConnector.cpp \
@@ -201,12 +208,6 @@ SOURCES += main.cpp \
     GUIConnectorAppearance.cpp \
     Widgets/SystemParametersWidget.cpp \
     PlotWindow.cpp \
-    GUIObjects/GUIWidgets.cpp \
-    GUIObjects/GUIObject.cpp \
-    GUIObjects/GUIModelObjectAppearance.cpp \
-    GUIObjects/GUIModelObject.cpp \
-    GUIObjects/GUIContainerObject.cpp \
-    GUIObjects/GUIComponent.cpp \
     Utilities/XMLUtilities.cpp \
     Utilities/GUIUtilities.cpp \
     Configuration.cpp \
@@ -215,7 +216,6 @@ SOURCES += main.cpp \
     CoreAccess.cpp \
     Widgets/UndoWidget.cpp \
     Widgets/QuickNavigationWidget.cpp \
-    GUIObjects/GUIContainerPort.cpp \
     Dialogs/ContainerPortPropertiesDialog.cpp \
     Dialogs/HelpDialog.cpp \
     dependencies/BarChartPlotter/plotterbase.cpp \
@@ -272,6 +272,13 @@ SOURCES += main.cpp \
 
 HEADERS += MainWindow.h \
     BuiltinTests.h \
+    GUIObjects/ComponentObject.h \
+    GUIObjects/ModelObject.h \
+    GUIObjects/ModelObjectAppearance.h \
+    GUIObjects/SystemObject.h \
+    GUIObjects/SystemPortObject.h \
+    GUIObjects/WidgetObject.h \
+    GUIObjects/WorkspaceObject.h \
     Widgets/ProjectTabWidget.h \
     GUIConnector.h \
     GUIPort.h \
@@ -289,12 +296,6 @@ HEADERS += MainWindow.h \
     GUIConnectorAppearance.h \
     Widgets/SystemParametersWidget.h \
     PlotWindow.h \
-    GUIObjects/GUIWidgets.h \
-    GUIObjects/GUIObject.h \
-    GUIObjects/GUIModelObjectAppearance.h \
-    GUIObjects/GUIModelObject.h \
-    GUIObjects/GUIContainerObject.h \
-    GUIObjects/GUIComponent.h \
     Utilities/XMLUtilities.h \
     Utilities/GUIUtilities.h \
     Configuration.h \
@@ -302,7 +303,6 @@ HEADERS += MainWindow.h \
     Dialogs/AboutDialog.h \
     Widgets/UndoWidget.h \
     Widgets/QuickNavigationWidget.h \
-    GUIObjects/GUIContainerPort.h \
     Dialogs/ContainerPortPropertiesDialog.h \
     Dialogs/HelpDialog.h \
     dependencies/BarChartPlotter/plotterbase.h \

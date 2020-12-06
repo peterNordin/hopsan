@@ -37,7 +37,7 @@
 #include "SystemParametersWidget.h"
 #include "common.h"
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Utilities/GUIUtilities.h"
 #include "FindWidget.h"
 #include "Configuration.h"

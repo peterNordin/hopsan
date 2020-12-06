@@ -43,7 +43,7 @@
 
 #include "PlotWindow.h"
 #include "DesktopHandler.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "MessageHandler.h"
 #include "Widgets/ModelWidget.h"
 #include "common.h"

@@ -32,8 +32,8 @@
 //$Id$
 
 #include "global.h"
-#include "GUIContainerPort.h"
-#include "GUIContainerObject.h"
+#include "SystemPortObject.h"
+#include "SystemObject.h"
 #include "GUIPort.h"
 #include "Dialogs/ContainerPortPropertiesDialog.h"
 

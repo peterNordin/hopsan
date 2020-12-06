@@ -45,7 +45,7 @@
 #include "Configuration.h"
 #include "DesktopHandler.h"
 #include "GraphicsView.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "OptionsDialog.h"
 #include "Widgets/ModelWidget.h"
 #include "ModelHandler.h"

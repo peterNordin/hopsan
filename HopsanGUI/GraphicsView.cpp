@@ -54,7 +54,7 @@
 #include "Widgets/ModelWidget.h"
 #include "ModelHandler.h"
 #include "MessageHandler.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "LibraryHandler.h"
 
 //Maybe we can remove these to when some cleanup has happened in the code later on (maybe even GUIPort.h)

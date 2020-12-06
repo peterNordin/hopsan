@@ -40,8 +40,8 @@
 #endif
 
 
-#include "GUIModelObject.h"
-#include "GUIContainerObject.h"
+#include "ModelObject.h"
+#include "SystemObject.h"
 #include "Widgets/ModelWidget.h"
 #include "GraphicsView.h"
 #include "Utilities/GUIUtilities.h"

@@ -34,7 +34,7 @@
 #include "PlotHandler.h"
 
 #include "global.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "PlotWindow.h"
 #include "PlotCurve.h"
 #include "Configuration.h"

@@ -47,7 +47,7 @@
 #include "Configuration.h"
 #include "Utilities/GUIUtilities.h"
 #include "ModelHandler.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "PlotWindow.h"
 #include "MessageHandler.h"
 #include "Widgets/TimeOffsetWidget.h"

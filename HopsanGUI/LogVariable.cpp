@@ -34,7 +34,7 @@
 #include "global.h"
 #include "Configuration.h"
 #include "LogVariable.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "Utilities/GUIUtilities.h"
 #include "LogDataGeneration.h"
 #include "MessageHandler.h"

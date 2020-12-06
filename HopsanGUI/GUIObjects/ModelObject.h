@@ -22,20 +22,11 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIModelObject.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the GUIModelObject class (The baseclass for all objects representing model parts)
-//!
-//$Id$
+#ifndef MODELOBJECT_H
+#define MODELOBJECT_H
 
-#ifndef GUIMODELOBJECT_H
-#define GUIMODELOBJECT_H
-
-#include "GUIObject.h"
-#include "GUIModelObjectAppearance.h"
+#include "WorkspaceObject.h"
+#include "ModelObjectAppearance.h"
 #include "UnitScale.h"
 #include "CoreAccess.h"
 #include <QGraphicsSvgItem>
@@ -266,4 +257,4 @@ protected:
     ModelObject* mpParentModelObject;
 };
 
-#endif // GUIMODELOBJECT_H
+#endif // MODELOBJECT_H

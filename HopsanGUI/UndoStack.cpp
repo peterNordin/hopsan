@@ -35,8 +35,8 @@
 #include "UndoStack.h"
 #include "GUIConnector.h"
 #include "loadFunctions.h"
-#include "GUIObjects/GUIContainerObject.h"
-#include "GUIObjects/GUIWidgets.h"
+#include "GUIObjects/SystemObject.h"
+#include "GUIObjects/WidgetObject.h"
 #include "MessageHandler.h"
 #include "Widgets/UndoWidget.h"
 

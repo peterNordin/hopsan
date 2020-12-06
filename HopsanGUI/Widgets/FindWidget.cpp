@@ -26,8 +26,8 @@
 
 #include "FindWidget.h"
 
-#include "GUIObjects/GUIModelObject.h"
-#include "GUIObjects/GUIContainerObject.h"
+#include "GUIObjects/ModelObject.h"
+#include "GUIObjects/SystemObject.h"
 #include "ModelWidget.h"
 #include "GraphicsView.h"
 #include "Utilities/GUIUtilities.h"

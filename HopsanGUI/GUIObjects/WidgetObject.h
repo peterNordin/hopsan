@@ -22,22 +22,13 @@
 
 -----------------------------------------------------------------------------*/
 
-//!
-//! @file   GUIWidgets.h
-//! @author Flumes <flumes@lists.iei.liu.se>
-//! @date   2010-01-01
-//!
-//! @brief Contains the GUIWidgets classes
-//!
-//$Id$
-
-#ifndef GUIWIDGETS_H
-#define GUIWIDGETS_H
+#ifndef WIDGETOBJECT_H
+#define WIDGETOBJECT_H
 
 #include <QGraphicsWidget>
 #include <QObject>
 
-#include "GUIObject.h"
+#include "WorkspaceObject.h"
 #include "common.h"
 
 #include <QTextEdit>
@@ -157,4 +148,4 @@ private:
     double mHeightBeforeResize;
 };
 
-#endif // GUIWIDGETS_H
+#endif // WIDGETOBJECT_H
