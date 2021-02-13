@@ -134,7 +134,11 @@ void* Component::getParameterDataPtr(const HString &rName)
 
 bool Component::setParameterValue(const HString &rName, const HString &rValue, bool force)
 {
-    return mpParameters->setParameterValue(rName, rValue, force);
+    bool success = mpParameters->setParameterValue(rName, rValue, force);
+    if(success && mpParameters->parameterTriggersReconfiguration(rName)) {
+        this->reconfigure();
+    }
+    return success;
 }
 
 
@@ -511,6 +515,11 @@ void Component::addConditionalConstant(const HString &rName, const HString &rDes
         rData=0;
     }
     registerConditionalParameter(rName, rDescription, rConditions, rData);
+}
+
+void Component::setReconfigurationParameter(const HString &rName)
+{
+    mpParameters->setParameterTriggersReconfiguration(rName);
 }
 
 //! @brief Add (register) a constant parameter with a default value to the component
@@ -1677,6 +1686,16 @@ void Component::configure()
 {
     // This function ust be overloaded in every component
     addErrorMessage("You must overload the configure() function in Component: " + mTypeName);
+}
+
+//! @brief Re-configures a component, depending on e.g. parameter values or external files
+//! @details This function can be optionally overloaded if it is needed
+//! This function must explicitly be called by host environment whenever necessary, but always after calling configure().
+//! @ingroup ComponentSetup
+void Component::reconfigure()
+{
+    // This function can be overloaded in every component
+    // Does nothing by default
 }
 
 //! @brief Deconfigure a component, use this to cleanup and memory/resource allocations you have made in configure

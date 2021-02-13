@@ -121,6 +121,7 @@ public slots:
     void setUnHovered();
     void deleteMe(UndoStatusEnumT undo=Undo);
     void deleteMeWithNoUndo();
+    void breakConnection(const Port *pPort);
     void deselect();
     void select();
     void setDashed(bool value);

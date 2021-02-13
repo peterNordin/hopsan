@@ -93,6 +93,7 @@ public:
     //==========Public functions==========
     // Configuration and simulation functions
     virtual void configure();
+    virtual void reconfigure();
     virtual void deconfigure();
     virtual bool preInitialize();
     virtual bool checkModelBeforeSimulation();
@@ -138,6 +139,8 @@ public:
     void addConstant(const HString &rName, const HString &rDescription, HTextBlock &rData);
     void addConditionalConstant(const HString &rName, const HString &rDescription, std::vector<HString> &rConditions, int &rData);
     void addConditionalConstant(const HString &rName, const HString &rDescription, std::vector<HString> &rConditions, const int defaultValue, int &rData);
+
+    void setReconfigurationParameter(const HString &rName);
 
     void setConstantValue(const HString &rName, const double value);
     void setConstantValue(const HString &rName, const int value);
