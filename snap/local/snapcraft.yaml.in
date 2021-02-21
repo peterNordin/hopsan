@@ -31,7 +31,7 @@ apps:
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
 
   gui:
-    command: desktop-launch $SNAP/bin/hopsangui
+    command: bin/hopsangui
     extensions: [kde-neon]
     plugs: [kde-frameworks-5-plug, home, gsettings, opengl, network]
     desktop: usr/share/applications/HopsanGUI.desktop
@@ -41,7 +41,7 @@ apps:
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
 
   holc:
-    command: desktop-launch $SNAP/bin/holc
+    command: bin/holc
     extensions: [kde-neon]
     plugs: [kde-frameworks-5-plug, home, gsettings]
     desktop: usr/share/applications/HoLC.desktop
