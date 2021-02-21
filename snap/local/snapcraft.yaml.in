@@ -36,7 +36,6 @@ apps:
     plugs: [kde-frameworks-5-plug, home, gsettings, opengl, network]
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
-      DISABLE_WAYLAND: 1
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
 
@@ -46,7 +45,6 @@ apps:
     plugs: [kde-frameworks-5-plug, home, gsettings]
     desktop: usr/share/applications/HoLC.desktop
     environment:
-      DISABLE_WAYLAND: 1
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
 
