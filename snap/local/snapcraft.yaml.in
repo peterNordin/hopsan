@@ -22,23 +22,6 @@ layout:
   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/libpthread_nonshared.a:
     bind-file: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/libpthread_nonshared.a
 
-plugs:
-  # Gtk Common Themes support
-  # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
-  gsettings:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes:sounds-themes
-
 apps:
   cli:
     command: bin/hopsancli
@@ -53,8 +36,6 @@ apps:
     plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings, opengl, network]
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
-      # gtk-common-themes support
-      QT_QPA_PLATFORMTHEME: gtk3
       DISABLE_WAYLAND: 1
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
@@ -65,8 +46,6 @@ apps:
     plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings]
     desktop: usr/share/applications/HoLC.desktop
     environment:
-      # gtk-common-themes support
-      QT_QPA_PLATFORMTHEME: gtk3
       DISABLE_WAYLAND: 1
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
