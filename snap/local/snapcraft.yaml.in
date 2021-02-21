@@ -33,7 +33,7 @@ apps:
   gui:
     command: desktop-launch $SNAP/bin/hopsangui
     extensions: [kde-neon]
-    plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings, opengl, network]
+    plugs: [kde-frameworks-5-plug, home, gsettings, opengl, network]
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
       DISABLE_WAYLAND: 1
@@ -43,7 +43,7 @@ apps:
   holc:
     command: desktop-launch $SNAP/bin/holc
     extensions: [kde-neon]
-    plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings]
+    plugs: [kde-frameworks-5-plug, home, gsettings]
     desktop: usr/share/applications/HoLC.desktop
     environment:
       DISABLE_WAYLAND: 1
