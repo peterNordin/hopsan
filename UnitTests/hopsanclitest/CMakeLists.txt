@@ -13,7 +13,7 @@ target_compile_definitions(${test_name} PRIVATE
   DEFAULT_LIBRARY_ROOT=\"${CMAKE_CURRENT_BINARY_DIR}/../../componentLibraries/defaultLibrary/\"
   TEST_DATA_ROOT=\"${CMAKE_CURRENT_LIST_DIR}/../HopsanCoreTests/SimulationTest/\")
 target_include_directories(${test_name} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../../HopsanCLI)
-target_link_libraries(${test_name} hopsancore Qt5::Test)
+target_link_libraries(${test_name} hopsancore hopsanutils Qt5::Test)
 add_test(NAME ${test_name} COMMAND ${test_name})
 
 if (WIN32)

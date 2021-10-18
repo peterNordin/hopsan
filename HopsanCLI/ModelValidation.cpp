@@ -42,6 +42,8 @@
 #include "ComponentUtilities/CSVParser.h"
 #include "ComponentUtilities/LookupTable.h"
 
+#include "hopsanutils/CommonUtilities.h"
+
 #include <cstring>
 #include <iomanip>
 #include <ctime>
@@ -218,7 +220,7 @@ bool extractTestData(ComponentSystem *pRootSystem, string fullVarName, std::vect
     // Figure out system hierarcy and names (split name attribute)
     std::vector<std::string> sysfields;
     std::vector<std::string> namefields;
-    splitStringOnDelimiter(fullVarName, '$', sysfields);
+    hopsan::splitStringOnDelimiter(fullVarName, '$', sysfields);
     if (sysfields.size() < 1)
     {
         printErrorMessage("To few system/name fields in: "+ fullVarName);
@@ -320,8 +322,8 @@ bool performModelTest(const std::string hvcFilePath)
 {
     // Figure out basepath and basename
     string basepath, basename, filename, ext;
-    splitFilePath(hvcFilePath, basepath, filename);
-    splitFileName(filename, basename, ext);
+    hopsan::splitFilePath(hvcFilePath, basepath, filename);
+    hopsan::splitFileName(filename, basename, ext);
     //cout << basepath << " :: " << filename << " :: " << basename << " :: " << ext << endl;
 
     try

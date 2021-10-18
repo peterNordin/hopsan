@@ -27,35 +27,32 @@
 //! @brief Contains model specific helpfunctions for CLI
 //!
 
+#include "hopsanutils/ModelUtilities.h"
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>
 
-#include "ModelUtilities.h"
-#include "version_cli.h"
-#include "CliUtilities.h"
-
 #include "HopsanEssentials.h"
 #include "HopsanTypes.h"
 
-#include "hopsanutils/CommonUtilities.h"
+//#include "hopsancoreutils/CommonUtilities.h"
 
 #ifdef USEHDF5
 #include "hopsanhdf5exporter.h"
 #endif
 
 using namespace std;
-using namespace hopsan;
 
-void generateFullSubSystemHierarchyName(const ComponentSystem *pSys, HString &rFullSysName, const HString& separator)
+namespace hopsan {
+
+void generateFullSubSystemHierarchyName(const ComponentSystem *pSystem, const HString& separator, HString &rFullSysName)
 {
-    if (pSys->getSystemParent())
-    {
-        generateFullSubSystemHierarchyName(pSys->getSystemParent(), rFullSysName, separator);
-        rFullSysName.append(pSys->getName()).append(separator);
+    if (pSystem->getSystemParent()) {
+        generateFullSubSystemHierarchyName(pSystem->getSystemParent(), separator, rFullSysName);
+        rFullSysName.append(pSystem->getName()).append(separator);
     }
-    else
-    {
+    else {
         // Do not include top-level name in sub-system hierarchy
         rFullSysName.clear();
     }
@@ -66,7 +63,7 @@ HString generateFullSubSystemHierarchyName(const Component *pComponent, const HS
     const ComponentSystem* pSystem = pComponent->isComponentSystem() ? dynamic_cast<const ComponentSystem*>(pComponent) : pComponent->getSystemParent();
 
     HString fullSysName;
-    generateFullSubSystemHierarchyName(pSystem, fullSysName, separator);
+    generateFullSubSystemHierarchyName(pSystem, separator, fullSysName);
     if (!includeLastSeparator && !fullSysName.empty()) {
         fullSysName.erase(fullSysName.size()-separator.size(),separator.size());
     }
@@ -83,75 +80,13 @@ HString generateFullPortVariableName(const Port *pPort, const size_t dataId)
        ComponentSystem *pSys = pComp->getSystemParent();
        if (pSys)
        {
-           generateFullSubSystemHierarchyName(pSys, fullName);
+           generateFullSubSystemHierarchyName(pSys, "", fullName);
        }
 
        fullName.append(pComp->getName()).append("#").append(pPort->getName()).append("#").append(pND->name);
    }
    return fullName;
 }
-
-
-//! @brief Helpfunction to print timestep info for a system
-//! @param[in] pSystem The system to print info for
-void printTsInfo(const ComponentSystem* pSystem)
-{
-    cout << "Ts: " << pSystem->getDesiredTimeStep() << " InheritTs: " << pSystem->doesInheritTimestep();
-}
-
-//! @brief Print system parameters in a system
-//! @param[in] pSystem The system to print info for
-void printSystemParams(ComponentSystem* pSystem)
-{
-    const vector<ParameterEvaluator*> *pParams = pSystem->getParametersVectorPtr();
-    for (size_t i=0; i<pParams->size(); ++i)
-    {
-        cout << " SysParam: " << pParams->at(i)->getName().c_str() << "=" << pParams->at(i)->getValue().c_str();
-    }
-}
-
-//! @brief Print component hierarcy in a system
-//! @param[in] pSystem The system to print info for
-//! @param[in] prefix Text to add before printout
-//! @param[in] doPrintTsInfo Should timestep info be included
-//! @param[in] doPrintSystemParams Should system parameters be printed
-void printComponentHierarchy(ComponentSystem *pSystem, std::string prefix,
-                             const bool doPrintTsInfo,
-                             const bool doPrintSystemParams)
-{
-    if (pSystem)
-    {
-        cout << prefix << pSystem->getName().c_str() << ", ";
-        if (doPrintTsInfo)
-        {
-            printTsInfo(pSystem);
-        }
-
-        if (doPrintSystemParams)
-        {
-            cout << " ";
-            printSystemParams(pSystem);
-        }
-
-        cout << endl;
-
-
-        prefix.append("  ");
-        vector<HString> names = pSystem->getSubComponentNames();
-        for (size_t i=0; i<names.size(); ++i)
-        {
-            if ( pSystem->getSubComponent(names[i])->isComponentSystem() )
-            {
-                printComponentHierarchy(pSystem->getSubComponentSystem(names[i]), prefix, doPrintTsInfo, doPrintSystemParams);
-            }
-            else
-            {
-                cout << prefix << names[i].c_str() << endl;
-            }
-        }
-    }
-}
-
 
 
 void transposeCSVresults(const std::string &rFileName)
@@ -211,8 +146,9 @@ void transposeCSVresults(const std::string &rFileName)
     }
 }
 
-void exportParameterValuesToCSV(const std::string &rFileName, hopsan::ComponentSystem* pSystem, string prefix, ofstream *pFile)
+RV<> exportParameterValuesToCSV(const std::string &rFileName, ComponentSystem* pSystem, string prefix, ofstream *pFile)
 {
+    RV<> rv;
     bool doCloseFile=false;
     if (!pFile)
     {
@@ -220,9 +156,9 @@ void exportParameterValuesToCSV(const std::string &rFileName, hopsan::ComponentS
         pFile->open(rFileName.c_str());
         if (!pFile->good())
         {
-            printErrorMessage("Could not open: " + rFileName + " for writing!");
-            return;
+            rv.addError("Could not open: " + rFileName + " for writing!");
             delete pFile;
+            return rv.fail();
         }
         doCloseFile = true;
     }
@@ -271,11 +207,13 @@ void exportParameterValuesToCSV(const std::string &rFileName, hopsan::ComponentS
         delete pFile;
     }
 
+    return rv.success();
 }
 
 //! @todo should we use CSV parser instead?
-void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentSystem* pSystem)
+RV<> importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentSystem* pSystem)
 {
+    RV<> rv;
     if (pSystem)
     {
         std::ifstream file;
@@ -324,12 +262,12 @@ void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
                                 //! @todo what about parameter alias
                                 bool ok = pComponent->setParameterValue(parameterName.c_str(), lineVec[1].c_str());
                                 if (!ok) {
-                                    printErrorMessage("Setting parameter: " + parameterName + " in component: " + fullComponentName);
+                                    rv.addError("Setting parameter: " + parameterName + " in component: " + fullComponentName);
                                 }
                             }
                         }
                         else {
-                            printErrorMessage(lineVec[0] + " should be FullComponentName#ParameterName on line: " + line);
+                            rv.addError(lineVec[0] + " should be FullComponentName#ParameterName on line: " + line);
                         }
                     }
                     else
@@ -337,7 +275,7 @@ void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
                         // Print error for non-empty lines
                         if (lineVec.size() > 0)
                         {
-                            printWarningMessage(string("Wrong line format: ") + line);
+                            rv.addWarning(string("Wrong line format: ") + line);
                         }
                     }
                 }
@@ -346,9 +284,12 @@ void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
         }
         else
         {
-            printErrorMessage(string("Could not open file: ")+filePath);
+            rv.addError(string("Could not open file: ")+filePath);
+            return rv.fail();
         }
+        return rv.success();
     }
+    return rv.fail();
 }
 
 
@@ -356,9 +297,9 @@ void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
 //! @param[in] filePath The file to read from
 //! @param[out] rComps The component names
 //! @param[out] rPorts The port names
-void readNodesToSaveFromTxtFile(const std::string filePath, std::vector<std::string> &rComps, std::vector<std::string> &rPorts)
+void readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::string> &rComponents, std::vector<std::string> &rPorts)
 {
-    rComps.clear();
+    rComponents.clear();
     rPorts.clear();
     std::string line;
     std::ifstream file;
@@ -378,7 +319,7 @@ void readNodesToSaveFromTxtFile(const std::string filePath, std::vector<std::str
                 comp = line.substr(0, sep);
                 port = line.substr(sep+1);
 
-                rComps.push_back(comp);
+                rComponents.push_back(comp);
                 rPorts.push_back(port);
             }
         }
@@ -508,12 +449,11 @@ void saveResultsToHDF5(ComponentSystem *pRootSystem, const string &rFileName, co
 //! @brief Save results to HDF5 format
 //! @param [in] pRootSystem Pointer to component system
 //! @param [in] rFileName File name for output file
-//! @param [in] howMany Specifies if all results or only final values should be saved
 //! @param [in] includeFilter list of full port names or variables names to include (excluding all others)
-void saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, const SaveResults howMany, const std::vector<string>& includeFilter)
+//! @param [in] howMany Specifies if all results or only final values should be saved
+void saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, const std::vector<string>& includeFilter, SaveResults howMany)
 {
-    if (pRootSystem)
-    {
+    if (pRootSystem) {
         ofstream outfile;
         outfile.open(rFileName.c_str());
         if (outfile.good()) {
@@ -571,4 +511,5 @@ void saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, con
     }
 }
 
+}
 

@@ -23,38 +23,34 @@
 -----------------------------------------------------------------------------*/
 
 //!
-//! @file   HopsanCLI/CliUtilities.h
-//! @author peter.nordin@liu.se
-//! @date   2014-12-09
-//!
-//! @brief Contains helpfunctions for CLI
+//! @file   CommonUtilities.h
+//! @brief Contains common utility functions
 //!
 //$Id$
 
-#ifndef CLIUTILITIES_H
-#define CLIUTILITIES_H
+#ifndef COMMONUTILITIES_H
+#define COMMONUTILITIES_H
 
 #include <string>
 #include <vector>
-#include <sstream>
+#include <algorithm>
 
-std::string getCurrentExecPath();
+namespace hopsan {
 
-// ===== Print functions =====
-enum ColorsEnumT {Red, Green, Blue, Yellow, White, Reset};
-void printErrorMessage(const std::string &rError, bool silent=false);
-void printWarningMessage(const std::string &rWarning, bool silent=false);
-void printMessage(const std::string &rMessage, bool silent=false);
-void printColorMessage(const ColorsEnumT color, const std::string &rMessage, bool silent=false);
-void setTerminalColor(const ColorsEnumT color);
+// ===== Help Functions for String Paths =====
+void splitFilePath(const std::string &fullPath, std::string &rBasePath, std::string &rFileName);
+void splitFileName(const std::string &fileName, std::string &rBaseName, std::string &rExtension);
+void splitStringOnDelimiter(const std::string &string, char delim, std::vector<std::string> &rSplitVector);
+std::string relativePath(std::string basePath, std::string fullPath);
 
-// ===== Sys Functions =====
-size_t getNumAvailibleCores();
+// ===== Template Help Function =====
+template <typename ContainerT, typename ValueT>
+bool contains(const ContainerT& container, const ValueT& value) {
+    auto it = std::find(container.begin(), container.end(), value);
+    return (it != container.end());
+}
 
-// ===== Data Functions =====
-bool compareVectors(const std::vector<double> &rVec, const std::vector<double> &rRef, const double tol);
 
-// ===== Read File Functions =====
-void readExternalLibsFromTxtFile(const std::string filePath, std::vector<std::string> &rExtLibFileNames);
+}
 
-#endif // CLIUTILITIES_H
+#endif // COMMONUTILITIES_H

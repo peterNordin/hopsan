@@ -45,6 +45,8 @@
 #include "ModelValidation.h"
 #include "BuildUtilities.h"
 
+#include "hopsanutils/CommonUtilities.h"
+
 #ifdef USEOPS
 #include "OpsWorker.h"
 #include "OpsEvaluator.h"
@@ -351,8 +353,8 @@ int main(int argc, char *argv[])
             string model = hmfPathOption.getValue();
             string dst = destinationPath;
             string basePath, baseName, filename, ext;
-            splitFilePath(model, basePath, filename);
-            splitFileName(filename, baseName, ext);
+            hopsan::splitFilePath(model, basePath, filename);
+            hopsan::splitFileName(filename, baseName, ext);
             cout <<  "Creating HVC Validation Data Set from Model: " << model << endl << "Saving data to: " << dst+baseName << ".*" << endl;
             returnSuccess =  createModelTestDataSet(model, dst+baseName);
         }
@@ -861,7 +863,7 @@ int main(int argc, char *argv[])
                     vector<string> simTime;
                     if (simulateOption.getValue() != "hmf")
                     {
-                        splitStringOnDelimiter(simulateOption.getValue(),',',simTime);
+                        hopsan::splitStringOnDelimiter(simulateOption.getValue(),',',simTime);
                         if (simTime.size() == 3)
                         {
                             startTime = atof(simTime[0].c_str());
@@ -907,7 +909,7 @@ int main(int argc, char *argv[])
                         // Else read , separated string
                         else
                         {
-                            splitStringOnDelimiter(file_or_list,',',logOnlyPortsOrVariables);
+                            hopsan::splitStringOnDelimiter(file_or_list,',',logOnlyPortsOrVariables);
                         }
 
                         // Now disable all nodes and then enable the requested ones
