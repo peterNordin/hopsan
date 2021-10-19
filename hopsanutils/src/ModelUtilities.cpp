@@ -103,7 +103,7 @@ void transposeCSVresults(const std::string &rFileName)
             getline(infile, line);
 
             // Split on delimiter
-            splitStringOnDelimiter(line, ',', lineVec);
+            hopsan::splitStringOnDelimiter(line, ',', lineVec);
 
             // Store line vector
             if (lineVec.size() > 0)
@@ -228,14 +228,14 @@ RV<> importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
                 if (*line.begin() != '#')
                 {
                     // Split on delimiter
-                    splitStringOnDelimiter(line, ',', lineVec);
+                    hopsan::splitStringOnDelimiter(line, ',', lineVec);
 
                     // Parse line vector
                     if (lineVec.size() == 2)
                     {
                         std::vector<std::string> nameParts;
                         string fullComponentName, parameterName;
-                        splitStringOnDelimiter(lineVec[0], '#', nameParts);
+                        hopsan::splitStringOnDelimiter(lineVec[0], '#', nameParts);
 
                         // Split last name part into fullcomponent and parameter#value name
                         if (nameParts.size() == 2 || nameParts.size() == 3 ) {
@@ -255,7 +255,9 @@ RV<> importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
                                 pComponent = pSystem;
                             }
                             else {
-                                pComponent = getComponentWithFullName(pSystem, fullComponentName);
+                                auto crv = getComponentWithFullName(pSystem, fullComponentName);
+                                rv.copyMessages(crv.messages());
+                                pComponent = crv.rv();
                             }
                             if (pComponent) {
                                 // lineVec[1] should be the parameter value
@@ -297,8 +299,9 @@ RV<> importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
 //! @param[in] filePath The file to read from
 //! @param[out] rComps The component names
 //! @param[out] rPorts The port names
-void readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::string> &rComponents, std::vector<std::string> &rPorts)
+RV<> readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::string> &rComponents, std::vector<std::string> &rPorts)
 {
+    RV<> rv;
     rComponents.clear();
     rPorts.clear();
     std::string line;
@@ -324,17 +327,20 @@ void readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::st
             }
         }
         file.close();
+        return rv.success();
     }
     else
     {
-        printErrorMessage("Could not open file: " + filePath);
+        rv.addError("Could not open file: " + filePath);
+        return rv.fail();
     }
 }
 
-Component *getComponentWithFullName(ComponentSystem *pRootSystem, const string &fullComponentName)
+RV<hopsan::Component*> getComponentWithFullName(ComponentSystem *pRootSystem, const string &fullComponentName)
 {
+    RV<hopsan::Component*> rv(false, nullptr);
     std::vector<std::string> nameParts;
-    splitStringOnDelimiter(fullComponentName, '$', nameParts);
+    hopsan::splitStringOnDelimiter(fullComponentName, '$', nameParts);
 
     // Search into subsystems
     hopsan::ComponentSystem* pCurrentSystem = pRootSystem;
@@ -345,28 +351,31 @@ Component *getComponentWithFullName(ComponentSystem *pRootSystem, const string &
             pCurrentSystem = pSystemComponent;
         }
         else {
-            printErrorMessage("Subsystem: "+nameParts[i]+" could not be found in parent system: "+pCurrentSystem->getName().c_str());
-            return nullptr;
+            rv.addError("Subsystem: "+nameParts[i]+" could not be found in parent system: "+pCurrentSystem->getName().c_str());
+            return rv.fail();
         }
     }
 
     // Now lookup the component
     hopsan::Component* pComponent = pCurrentSystem->getSubComponent(nameParts.back().c_str());
     if (pComponent) {
-        return pComponent;
+        return rv.success(pComponent);
     }
     else {
-        printErrorMessage("No component: " + nameParts.back() + " in system: " + pCurrentSystem->getName().c_str() );
-        return nullptr;
+        rv.addError("No component: " + nameParts.back() + " in system: " + pCurrentSystem->getName().c_str() );
+        return rv.fail();
     }
 }
 
-hopsan::Port* getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullPortName)
+RV<Port *> getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullPortName)
 {
+    RV<Port *> rv(false, nullptr);
     std::vector<std::string> nameParts;
-    splitStringOnDelimiter(fullPortName, '#', nameParts);
+    hopsan::splitStringOnDelimiter(fullPortName, '#', nameParts);
 
-    hopsan::Component* pComponent = getComponentWithFullName(pRootSystem, nameParts.front());
+    auto crv = getComponentWithFullName(pRootSystem, nameParts.front());
+    rv.copyMessages(crv.messages());
+    hopsan::Component* pComponent = crv.rv();
     if (pComponent) {
         std::string portName;
         if (nameParts.size() == 2 || nameParts.size() == 3 ) {
@@ -374,12 +383,12 @@ hopsan::Port* getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const st
             // Ignore ValuePart numParts[2] if it is pressent
         }
         else {
-            printErrorMessage("A portname on the format ComponentName#PortName could not be found: " + fullPortName);
+            rv.addError("A portname on the format ComponentName#PortName could not be found: " + fullPortName);
         }
 
-        return pComponent->getPort(portName.c_str());
+        return rv.success(pComponent->getPort(portName.c_str()));
     }
-    return nullptr;
+    return rv.fail();
 }
 
 
@@ -388,8 +397,9 @@ hopsan::Port* getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const st
 //! @param [in] rFileName File name for output file
 //! @param [in] includeFilter list of full port names or variables names to include (excluding all others)
 //! @param [in] howMany Specifies if all results or only final values should be saved
-void saveResultsToHDF5(ComponentSystem *pRootSystem, const string &rFileName, const std::vector<string>& includeFilter, const SaveResults howMany)
+RV<> saveResultsToHDF5(ComponentSystem *pRootSystem, const string &rFileName, const std::vector<string>& includeFilter, const SaveResults howMany)
 {
+    RV<> rv;
 #ifdef USEHDF5
     if(!pRootSystem) {
         return;
@@ -439,10 +449,11 @@ void saveResultsToHDF5(ComponentSystem *pRootSystem, const string &rFileName, co
 
     bool writeOK = exporter.writeToFile();
     if (!writeOK) {
-        printErrorMessage(("Failure when writing HDF5 file: "+exporter.getLastError()).c_str());
+        return rv.fail("Failure when writing HDF5 file: "+exporter.getLastError());
     }
+    return rv.success();
 #else
-    printErrorMessage("HopsanCLI was built without HDF5 support");
+    return rv.fail("hopsanutils was built without HDF5 support");
 #endif
 }
 
@@ -451,8 +462,9 @@ void saveResultsToHDF5(ComponentSystem *pRootSystem, const string &rFileName, co
 //! @param [in] rFileName File name for output file
 //! @param [in] includeFilter list of full port names or variables names to include (excluding all others)
 //! @param [in] howMany Specifies if all results or only final values should be saved
-void saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, const std::vector<string>& includeFilter, SaveResults howMany)
+RV<> saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, const std::vector<string>& includeFilter, SaveResults howMany)
 {
+    RV<> rv;
     if (pRootSystem) {
         ofstream outfile;
         outfile.open(rFileName.c_str());
@@ -504,11 +516,12 @@ void saveResultsToCSV(ComponentSystem *pRootSystem, const string &rFileName, con
 
         }
         else {
-            printErrorMessage("Could not open: " + rFileName + " for writing!");
+            return rv.fail("Could not open: " + rFileName + " for writing!");
         }
 
         outfile.close();
     }
+    return rv.success();
 }
 
 }

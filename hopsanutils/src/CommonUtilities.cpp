@@ -6,7 +6,7 @@
 using namespace hopsan;
 
 //! @brief Help function that splits a full path into basepath and filename
-void splitFilePath(const std::string &fullPath, std::string &rBasePath, std::string &rFileName)
+void hopsan::splitFilePath(const std::string &fullPath, std::string &rBasePath, std::string &rFileName)
 {
     size_t pos = fullPath.rfind('/');
     // If not found try a windows backslash instead
@@ -24,7 +24,7 @@ void splitFilePath(const std::string &fullPath, std::string &rBasePath, std::str
 }
 
 //! @brief Help function that splits a filename into basename and extension
-void splitFileName(const std::string &fileName, std::string &rBaseName, std::string &rExtension)
+void hopsan::splitFileName(const std::string &fileName, std::string &rBaseName, std::string &rExtension)
 {
     size_t pos = fileName.rfind('.');
     if (pos != std::string::npos) {
@@ -37,7 +37,7 @@ void splitFileName(const std::string &fileName, std::string &rBaseName, std::str
     }
 }
 
-void splitStringOnDelimiter(const std::string &string, char delim, std::vector<std::string> &rSplitVector)
+void hopsan::splitStringOnDelimiter(const std::string &string, char delim, std::vector<std::string> &rSplitVector)
 {
     rSplitVector.clear();
     std::string item;
@@ -48,7 +48,7 @@ void splitStringOnDelimiter(const std::string &string, char delim, std::vector<s
 }
 
 //! @brief Convert the fullpath into a path relative to basepath, both paths must be relative the same directoryo (or absolute)
-std::string relativePath(std::string basePath, std::string fullPath)
+std::string hopsan::relativePath(std::string basePath, std::string fullPath)
 {
     std::string result;
 

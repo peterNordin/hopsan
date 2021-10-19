@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(HopsanCoreUtils)
+project(HopsanUtils)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_DEBUG_POSTFIX _d)
 if(WIN32)
@@ -16,7 +16,13 @@ include(${CMAKE_CURRENT_LIST_DIR}/files.cmake)
 
 # Set include directories
 target_include_directories(${target_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
-                                                    $<INSTALL_INTERFACE:include>)
+                                                 $<INSTALL_INTERFACE:include>)
 
 # Set link dependencies
 target_link_libraries(${target_name} PUBLIC hopsancore)
+
+
+# ------------------------------
+# Tests
+# ------------------------------
+add_subdirectory(tests)

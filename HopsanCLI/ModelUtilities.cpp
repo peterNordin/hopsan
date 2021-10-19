@@ -290,14 +290,14 @@ void importParameterValuesFromCSV(const std::string filePath, hopsan::ComponentS
                 if (*line.begin() != '#')
                 {
                     // Split on delimiter
-                    splitStringOnDelimiter(line, ',', lineVec);
+                    hopsan::splitStringOnDelimiter(line, ',', lineVec);
 
                     // Parse line vector
                     if (lineVec.size() == 2)
                     {
                         std::vector<std::string> nameParts;
                         string fullComponentName, parameterName;
-                        splitStringOnDelimiter(lineVec[0], '#', nameParts);
+                        hopsan::splitStringOnDelimiter(lineVec[0], '#', nameParts);
 
                         // Split last name part into fullcomponent and parameter#value name
                         if (nameParts.size() == 2 || nameParts.size() == 3 ) {
@@ -393,7 +393,7 @@ void readNodesToSaveFromTxtFile(const std::string filePath, std::vector<std::str
 Component *getComponentWithFullName(ComponentSystem *pRootSystem, const string &fullComponentName)
 {
     std::vector<std::string> nameParts;
-    splitStringOnDelimiter(fullComponentName, '$', nameParts);
+    hopsan::splitStringOnDelimiter(fullComponentName, '$', nameParts);
 
     // Search into subsystems
     hopsan::ComponentSystem* pCurrentSystem = pRootSystem;
@@ -423,7 +423,7 @@ Component *getComponentWithFullName(ComponentSystem *pRootSystem, const string &
 hopsan::Port* getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullPortName)
 {
     std::vector<std::string> nameParts;
-    splitStringOnDelimiter(fullPortName, '#', nameParts);
+    hopsan::splitStringOnDelimiter(fullPortName, '#', nameParts);
 
     hopsan::Component* pComponent = getComponentWithFullName(pRootSystem, nameParts.front());
     if (pComponent) {

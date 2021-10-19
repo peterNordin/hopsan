@@ -104,7 +104,7 @@ bool exportHVCData(const string modelpath, const string baseFilePath, const std:
 
         // Decide paths relativ to the hvc file basepath
         string basepath, dummy, relModelPath, relCsvPath;
-        splitFilePath(hvcFilePath, basepath, dummy);
+        hopsan::splitFilePath(hvcFilePath, basepath, dummy);
         relModelPath = relativePath(basepath, modelpath);
         relCsvPath = relativePath(basepath, csvFilePath);
 

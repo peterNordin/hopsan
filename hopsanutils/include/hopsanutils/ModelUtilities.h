@@ -40,70 +40,17 @@
 
 namespace hopsan {
 
-template <typename ReturnValueType = bool>
-class RV {
-public:
-    enum class MessageType {Info, Warning, Error, Debug};
-    struct Message {
-        MessageType type;
-        std::string text;
-    };
-
-    RV() : mIsValid(false) {}
-    RV(bool isValid) : mIsValid(isValid) {}
-    //! @todo In case ReturnValueType = bool, also set rv
-    RV(bool isValid, const ReturnValueType &rv) : mIsValid(isValid), mRv(rv) {}
-    void addInfo(const std::string &message) {
-        mMessages.emplace_back(MessageType::Info, message);
-    }
-    void addWarning(const std::string &message) {
-        mMessages.emplace_back(MessageType::Warning, message);
-    }
-    void addError(const std::string &message) {
-        mMessages.emplace_back(MessageType::Error, message);
-    }
-    void addDebug(const std::string &message) {
-        mMessages.emplace_back(MessageType::Debug, message);
-    }
-
-    RV<ReturnValueType>& fail() {
-        mIsValid = false;
-        return *this;
-    }
-    RV<ReturnValueType>& success() {
-        mIsValid = true;
-        return *this;
-    }
-
-    bool operator()() const {
-        return mIsValid;
-    }
-
-    ReturnValueType& rv() {
-        return mRv;
-    }
-
-    std::vector<Message>& messages() {
-        return mMessages;
-    }
-
-protected:
-    bool mIsValid;
-    ReturnValueType mRv;
-    std::vector<Message> mMessages;
-};
-
 // ===== Save Functions =====
 enum SaveResults {Final, Full};
-void saveResultsToCSV(ComponentSystem *pRootSystem, const std::string &fileName, const std::vector<std::string>& includeFilter, SaveResults howMany);
-void saveResultsToHDF5(ComponentSystem *pRootSystem, const std::string &fileName, const std::vector<std::string>& includeFilter, SaveResults howMany);
+RV<> saveResultsToCSV(ComponentSystem *pRootSystem, const std::string &fileName, const std::vector<std::string>& includeFilter, SaveResults howMany);
+RV<> saveResultsToHDF5(ComponentSystem *pRootSystem, const std::string &fileName, const std::vector<std::string>& includeFilter, SaveResults howMany);
 
 void transposeCSVresults(const std::string &rFileName);
 RV<> exportParameterValuesToCSV(const std::string &rFileName, ComponentSystem* pSystem, std::string prefix="", std::ofstream *pFile=0);
 
 // ===== Load Functions =====
 RV<> importParameterValuesFromCSV(const std::string &filePath, ComponentSystem* pSystem);
-void readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::string> &rComponents, std::vector<std::string> &rPorts);
+RV<> readNodesToSaveFromTxtFile(const std::string &filePath, std::vector<std::string> &rComponents, std::vector<std::string> &rPorts);
 
 // ===== Help Functions =====
 void generateFullSubSystemHierarchyName(const hopsan::ComponentSystem *pSystem, const hopsan::HString &separator, hopsan::HString &rFullSysName);
@@ -111,8 +58,8 @@ hopsan::HString generateFullSubSystemHierarchyName(const hopsan::Component *pCom
 hopsan::HString generateFullPortVariableName(const hopsan::Port *pPort, const size_t dataId);
 
 
-hopsan::Component *getComponentWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullComponentName);
-hopsan::Port* getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullPortName);
+RV<hopsan::Component*> getComponentWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullComponentName);
+RV<hopsan::Port*> getPortWithFullName(hopsan::ComponentSystem *pRootSystem, const std::string &fullPortName);
 
 
 // ===== Template Help Function =====

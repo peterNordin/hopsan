@@ -50,6 +50,76 @@ bool contains(const ContainerT& container, const ValueT& value) {
     return (it != container.end());
 }
 
+struct RVMessage {
+    enum class MessageType {Info, Warning, Error, Debug};
+    RVMessage(MessageType mt, const std::string &t) : type(mt), text(t) {}
+    MessageType type;
+    std::string text;
+};
+
+template <typename ReturnValueType = bool>
+class RV {
+public:
+    RV() : mIsValid(false) {}
+    RV(bool isValid) : mIsValid(isValid) {}
+    //! @todo In case ReturnValueType = bool, also set rv
+    RV(bool isValid, const ReturnValueType &rv) : mIsValid(isValid), mRv(rv) {}
+    void addInfo(const std::string &message) {
+        mMessages.emplace_back(RVMessage::MessageType::Info, message);
+    }
+    void addWarning(const std::string &message) {
+        mMessages.emplace_back(RVMessage::MessageType::Warning, message);
+    }
+    void addError(const std::string &message) {
+        mMessages.emplace_back(RVMessage::MessageType::Error, message);
+    }
+    void addDebug(const std::string &message) {
+        mMessages.emplace_back(RVMessage::MessageType::Debug, message);
+    }
+
+    RV<ReturnValueType>& fail() {
+        mIsValid = false;
+        return *this;
+    }
+    RV<ReturnValueType>& fail(const std::string &errorMessage) {
+        mIsValid = false;
+        addError(errorMessage);
+        return *this;
+    }
+    RV<ReturnValueType>& success() {
+        mIsValid = true;
+        return *this;
+    }
+    RV<ReturnValueType>& success(ReturnValueType rv) {
+        mIsValid = true;
+        mRv = rv;
+        return *this;
+    }
+
+    bool operator()() const {
+        return mIsValid;
+    }
+
+    ReturnValueType& rv() {
+        return mRv;
+    }
+
+    const std::vector<RVMessage>& messages() {
+        return mMessages;
+    }
+
+    void copyMessages(const std::vector<RVMessage> &messages) {
+        for (const auto& msg : messages) {
+            mMessages.push_back(msg);
+        }
+    }
+
+protected:
+    bool mIsValid;
+    ReturnValueType mRv;
+    std::vector<RVMessage> mMessages;
+};
+
 
 }
 
