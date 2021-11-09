@@ -21,17 +21,17 @@ override_dh_auto_build:
 	cd dependencies; ./setupKatex.sh
 	cd dependencies; ./setupTclap.sh
 
-#       Now build Hopsan using qmake
-	mkdir -p hopsanShadowBuild
-	source dependencies/setHopsanBuildPaths.sh; cd hopsanShadowBuild; $${HOPSAN_BUILD_QT_QMAKE} ../HopsanNG.pro -r -spec linux-g++ -config release
-	make -j8 -C hopsanShadowBuild
+#       Now build Hopsan using CMake
+	mkdir -p hopsan-build
+	cd hopsan-build; cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=debian/hopsan/opt/hopsan -DBUILD_USER_DOCUMENTATION=ON -DBUILD_DEVELOPER_DOCUMENTATION=OFF ../
+	source dependencies/setHopsanBuildPaths.sh; cd hopsan-build; cmake --build . --target all
 
 override_dh_auto_clean:
-	rm -rf hopsanShadowBuild
+	rm -rf hopsan-build
 	dh_auto_clean
 
 override_dh_auto_install:
-	packaging/copyInstallHopsan.sh ./ debian/hopsan/opt/hopsan
+	cd hopsan-build; cmake --install .
 	dh_install packaging/HopsanGUI.desktop usr/share/applications/
 	dh_install HopsanGUI/graphics/uiicons/hopsan128x128.png usr/share/icons/hicolor/128x128/apps/
 
