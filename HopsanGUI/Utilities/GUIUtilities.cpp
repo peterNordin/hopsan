@@ -1206,9 +1206,17 @@ bool saveXmlFile(QString xmlFilePath, GUIMessageHandler *pMessageHandler, std::f
     const int open_ms = tt.toc();
 
     tt.tic();
+#if 1
+    QByteArray temp_data;
+    QTextStream out(&temp_data);
+    QDomDocument doc = saveFunction();
+    doc.save(out, XMLINDENTATION);
+    xmlFile.write(temp_data);
+#else
     QTextStream out(&xmlFile);
     QDomDocument doc = saveFunction();
     doc.save(out, XMLINDENTATION);
+#endif
     const double save_ms = tt.toc();
 
     tt.tic();
