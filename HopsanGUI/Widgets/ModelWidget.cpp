@@ -370,7 +370,7 @@ bool ModelWidget::defineVariableAlias(const QString &rFullName, const QString &r
         if (rAlias.isEmpty())
         {
             bool ok;
-            QString alias = QInputDialog::getText(gpMainWindowWidget, gpMainWindowWidget->tr("Define Variable Alias"),
+            QString alias = QInputDialog::getText(gpMainWindowWidget, tr("Define Variable Alias"),
                                                   QString("Alias for: %1").arg(rFullName), QLineEdit::Normal, "", &ok);
             if(ok)
             {

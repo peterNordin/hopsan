@@ -417,7 +417,7 @@ void LogDataHandler2::importFromPlo(QString importFilePath)
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QMessageBox::information(gpMainWindowWidget, gpMainWindowWidget->tr("Hopsan"), "Unable to read .PLO file.");
+        QMessageBox::information(gpMainWindowWidget, "Hopsan", "Unable to read .PLO file.");
         return;
     }
 

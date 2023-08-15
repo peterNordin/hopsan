@@ -336,7 +336,7 @@ void OptimizationDialog::saveAs(QString filePath)
     {
         filePath = QFileDialog::getSaveFileName(this, tr("Save Script File"),
                                                 gpConfig->getStringSetting(CFG_SCRIPTDIR),
-                                                this->tr("HCOM Script (*.hcom)"));
+                                                tr("HCOM Script (*.hcom)"));
 
         if(filePath.isEmpty())     //Don't save anything if user presses cancel
         {

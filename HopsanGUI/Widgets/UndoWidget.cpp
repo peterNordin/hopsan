@@ -61,19 +61,19 @@ UndoWidget::UndoWidget(QWidget *parent)
     this->resize(400,500);
     this->setWindowTitle("Undo History");
 
-    mpRedoButton = new QPushButton(tr("&Redo"));
+    mpRedoButton = new QPushButton(QDialog::tr("&Redo"));
     mpRedoButton->setAutoDefault(false);
     mpRedoButton->setFixedHeight(30);
     QFont tempFont = mpRedoButton->font();
     tempFont.setBold(true);
     mpRedoButton->setFont(tempFont);
 
-    mpUndoButton = new QPushButton(tr("&Undo"));
+    mpUndoButton = new QPushButton(QDialog::tr("&Undo"));
     mpUndoButton->setAutoDefault(false);
     mpUndoButton->setFixedHeight(30);
     mpUndoButton->setFont(tempFont);
 
-    mpClearButton = new QPushButton(tr("&Clear"));
+    mpClearButton = new QPushButton(QDialog::tr("&Clear"));
     mpClearButton->setAutoDefault(false);
     mpClearButton->setFixedHeight(30);
     mpClearButton->setFont(tempFont);

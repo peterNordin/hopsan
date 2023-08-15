@@ -826,7 +826,7 @@ void VariableTree::contextMenuEvent(QContextMenuEvent *event)
             else if (pSelectedAction == pSetQuantityAction)
             {
                 bool ok;
-                QString q = QInputDialog::getText(gpMainWindowWidget, gpMainWindowWidget->tr("Set Quantity"),
+                QString q = QInputDialog::getText(gpMainWindowWidget, tr("Set Quantity"),
                                                   QString("Quantity for: %1").arg(pItem->getFullName()), QLineEdit::Normal, pItem->getDataQuantity(), &ok);
                 if(ok)
                 {
