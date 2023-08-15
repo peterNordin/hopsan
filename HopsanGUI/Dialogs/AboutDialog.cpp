@@ -105,7 +105,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     pAuthorsHeading->setAlignment(Qt::AlignCenter);
 
     QLabel *pAuthorsText = new QLabel();
-    pAuthorsText->setText(trUtf8("Peter Nordin, Robert Braun (2009->)\nBjörn Eriksson (2009-2013)"));
+    pAuthorsText->setText("Peter Nordin, Robert Braun (2009->)\nBjörn Eriksson (2009-2013)");
     pAuthorsText->setWordWrap(true);
     pAuthorsText->setAlignment(Qt::AlignCenter);
 
@@ -115,7 +115,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     pContributorsHeading->setAlignment(Qt::AlignCenter);
 
     QLabel *pContributorsText = new QLabel();
-    pContributorsText->setText(tr("Alessandro Dell'Amico, Ingo Staack, Isak Demir, Karl Pettersson, Mikael Axin, Paulo Teixeira, Petter Krus, Pratik Deshpande, Sheryar Khan, Viktor Larsson, Jason Nicholson, Katharina Baer, Markus Bagge, Alejandro Sobron, Owen David"));
+    pContributorsText->setText("Alessandro Dell'Amico, Ingo Staack, Isak Demir, Karl Pettersson, Mikael Axin, Paulo Teixeira, Petter Krus, Pratik Deshpande, Sheryar Khan, Viktor Larsson, Jason Nicholson, Katharina Baer, Markus Bagge, Alejandro Sobron, Owen David");
     pContributorsText->setWordWrap(true);
     pContributorsText->setAlignment(Qt::AlignCenter);
 
@@ -125,7 +125,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     pSpecialThanksHeading->setAlignment(Qt::AlignCenter);
 
     QLabel *pSpecialThanksText = new QLabel();
-    pSpecialThanksText->setText(tr("Epiroc Rock Drills AB\nThe Swedish Foundation for Strategic Research"));
+    pSpecialThanksText->setText("Epiroc Rock Drills AB\nThe Swedish Foundation for Strategic Research");
     pSpecialThanksText->setWordWrap(true);
     pSpecialThanksText->setAlignment(Qt::AlignCenter);
 
@@ -145,7 +145,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     pContactHeading->setAlignment(Qt::AlignCenter);
 
     QLabel *pContactText = new QLabel();
-    pContactText->setText(trUtf8("Linköping University\nDepartment of Management and Engineering (IEI)\nDivision of Fluid and Mechatronic Systems (Flumes)\nPhone: +4613281000\nE-Mail: robert.braun@liu.se"));
+    pContactText->setText("Linköping University\nDepartment of Management and Engineering (IEI)\nDivision of Fluid and Mechatronic Systems (Flumes)\nPhone: +4613281000\nE-Mail: robert.braun@liu.se");
     pContactText->setWordWrap(true);
     pContactText->setAlignment(Qt::AlignCenter);
 

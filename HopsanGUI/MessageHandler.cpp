@@ -169,23 +169,23 @@ void GUIMessageHandler::addMessageFromCore(QString &rType, QString &rTag, QStrin
 
 void GUIMessageHandler::addInfoMessage(QString message, QString tag, bool doTimeStamp)
 {
-    addMessage(message.prepend("Info: "), tag, Info, doTimeStamp);
+    addMessage(message.prepend(tr("Info: ")), tag, Info, doTimeStamp);
 }
 
 void GUIMessageHandler::addWarningMessage(QString message, QString tag, bool doTimeStamp)
 {
-    addMessage(message.prepend("Warning: "), tag, Warning, doTimeStamp);
+    addMessage(message.prepend(tr("Warning: ")), tag, Warning, doTimeStamp);
 }
 
 void GUIMessageHandler::addErrorMessage(QString message, QString tag, bool doTimeStamp)
 {
-    addMessage(message.prepend("Error: "), tag, Error, doTimeStamp);
+    addMessage(message.prepend(tr("Error: ")), tag, Error, doTimeStamp);
     //QSound::play(QString(SOUNDSPATH) + "error.wav");
 }
 
 void GUIMessageHandler::addDebugMessage(QString message, QString tag, bool doTimeStamp)
 {
-    addMessage(message.prepend("Debug: "), tag, Debug, doTimeStamp);
+    addMessage(message.prepend(tr("Debug: ")), tag, Debug, doTimeStamp);
 }
 
 void GUIMessageHandler::addMessage(const QString &rMessage, const QString &rTag, const MessageTypeEnumT type, bool doTimeStamp)
