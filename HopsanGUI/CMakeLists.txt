@@ -6,7 +6,7 @@ if(WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX "")
 endif()
 
-find_package(Qt5 COMPONENTS Core Gui Widgets Xml Svg Network Test PrintSupport REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets Xml Svg Network Test PrintSupport LinguistTools)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -17,8 +17,12 @@ include(${CMAKE_CURRENT_LIST_DIR}/../dependencies/katex.cmake)
 
 set(target_name hopsangui)
 
+file(GLOB tsfiles translations/*.ts)
+qt5_create_translation(qmfiles ${CMAKE_CURRENT_LIST_DIR} ${tsfiles} OPTIONS -source-language en_US -no-obsolete)
+
+
 file(GLOB_RECURSE srcfiles *.cpp *.h *.hpp *.qrc)
-add_executable(${target_name} ${srcfiles})
+add_executable(${target_name} ${srcfiles} ${qmfiles})
 
 target_include_directories(${target_name} PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
@@ -42,3 +46,5 @@ install(TARGETS ${target_name}
 
 install(FILES ${CMAKE_CURRENT_LIST_DIR}/../hopsan-default-configuration.xml
         DESTINATION .)
+install(FILES ${qmfiles}
+        DESTINATION translations)
