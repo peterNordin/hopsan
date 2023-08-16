@@ -38,6 +38,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QFontDatabase>
+#include <QTranslator>
 
 #if QT_VERSION < 0x050500
 #include <iostream>
@@ -106,6 +107,16 @@ int main(int argc, char *argv[])
     gpCopyStack = &gCopyStack;
     GUIMessageHandler gMessageHandler;
     gpMessageHandler = &gMessageHandler;
+
+    QTranslator hopsanGuiTranslator_se;
+    bool loaded = hopsanGuiTranslator_se.load("hopsangui_sv_SE", gDesktopHandler.getMainPath()+"/translations");
+    qDebug() << "Loaded hopsangui_sv_SE translation" << loaded;
+    app.installTranslator(&hopsanGuiTranslator_se);
+
+    QTranslator hopsanGuiTranslator_de;
+    loaded = hopsanGuiTranslator_de.load("hopsangui_de_DE", gDesktopHandler.getMainPath()+"/translations");
+    qDebug() << "Loaded hopsangui_de_DE translation" << loaded;
+    app.installTranslator(&hopsanGuiTranslator_de);
 
     // Create the mainwindow
     MainWindow mainwindow;
