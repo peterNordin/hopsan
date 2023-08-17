@@ -38,6 +38,7 @@
 #include <QList>
 #include <QString>
 #include <QMutex>
+#include <QCoreApplication>
 
 
 // Forward declaration
@@ -46,6 +47,7 @@ class CoreMessagesAccess;
 enum MessageTypeEnumT {Info, Warning, Error, Fatal, Debug, UndefinedMessageType};
 class GUIMessage
 {
+    Q_DECLARE_TR_FUNCTIONS(GUIMessage)
 public:
     GUIMessage() {}
     GUIMessage(const GUIMessage &rOther);

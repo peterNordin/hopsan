@@ -176,7 +176,7 @@ Arguments:
         // do not warn in this case
         else if (!arg.contains("/hopsangui") && !arg.contains("hopsangui.exe") )
         {
-            const auto msg = QString("Unhandled argument: %1").arg(arg);
+            const auto msg = QApplication::tr("Unhandled argument: %1").arg(arg);
 #if QT_VERSION >= 0x050500
             qWarning() << qUtf8Printable(msg);
 #else
@@ -191,7 +191,7 @@ Arguments:
         QObject::connect(gpMainWindow, SIGNAL(showSplashScreenMessage(QString)), &splash, SLOT(showMessage(QString)));
         QObject::connect(gpLibraryHandler, SIGNAL(showSplashScreenMessage(QString)), &splash, SLOT(showMessage(QString)));
         QObject::connect(gpLibraryHandler, SIGNAL(closeSplashScreen()), &splash, SLOT(close()));
-        splash.showMessage("Starting Hopsan...");
+        splash.showMessage(QSplashScreen::tr("Starting Hopsan..."));
         splash.show();
         QTimer::singleShot(4000, &splash, SLOT(close())); // If initialize gets stuck for some reason, make sure splash screen is closed eventually
     }

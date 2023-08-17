@@ -64,15 +64,15 @@ QString GUIMessage::getMessageTypeAsString() const
 {
     switch (mType) {
     case Info:
-        return "Information";
+        return tr("Information");
     case Warning:
-        return "Warning";
+        return tr("Warning");
     case Error:
-        return "Error";
+        return tr("Error");
     case Debug:
-        return "Debug";
+        return tr("Debug");
     default:
-        return "Undefined Message Type";
+        return tr("Undefined Message Type");
     }
 }
 

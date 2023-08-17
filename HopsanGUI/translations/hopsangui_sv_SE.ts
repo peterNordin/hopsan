@@ -203,6 +203,34 @@
     </message>
 </context>
 <context>
+    <name>GUIMessage</name>
+    <message>
+        <location filename="../MessageHandler.cpp" line="67"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MessageHandler.cpp" line="69"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MessageHandler.cpp" line="71"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MessageHandler.cpp" line="73"/>
+        <source>Debug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MessageHandler.cpp" line="75"/>
+        <source>Undefined Message Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GUIMessageHandler</name>
     <message>
         <location filename="../MessageHandler.cpp" line="172"/>
@@ -320,6 +348,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="202"/>
+        <source> (Compiled in debug mode)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="204"/>
+        <source>Version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="207"/>
+        <source>Loading configuration...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="211"/>
+        <source>Initializing GUI...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="224"/>
         <source>Component Library</source>
         <translation type="unfinished"></translation>
@@ -340,6 +388,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="339"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="360"/>
+        <source>Loading component libraries...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="382"/>
+        <location filename="../MainWindow.cpp" line="395"/>
+        <source>Loading library: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="422"/>
+        <source>Finished!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="472"/>
         <location filename="../MainWindow.cpp" line="967"/>
         <source>&amp;New</source>
@@ -356,6 +425,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="477"/>
+        <source>Create a new empty model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="479"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
@@ -363,6 +437,11 @@
     <message>
         <location filename="../MainWindow.cpp" line="481"/>
         <source>Load Model File (Ctrl+O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="484"/>
+        <source>Open an existing model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -376,6 +455,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="490"/>
+        <source>Create a new HCOM script file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="492"/>
         <source>&amp;Open Text File</source>
         <translation type="unfinished"></translation>
@@ -386,6 +470,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="496"/>
+        <source>Open a text file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="498"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
@@ -393,6 +482,11 @@
     <message>
         <location filename="../MainWindow.cpp" line="500"/>
         <source>Save Model File (Ctrl+S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="502"/>
+        <source>Save current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -407,8 +501,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="508"/>
+        <source>Save current model as new file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="512"/>
         <source>Save And Execute Script (F5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="514"/>
+        <source>Save and execute current script.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -432,6 +536,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="522"/>
+        <source>Export model parameter set to HPF.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="524"/>
         <source>&amp;Export Model Parameters to SSV</source>
         <translation type="unfinished"></translation>
@@ -442,8 +551,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="528"/>
+        <source>Export model parameter set to SSV.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="530"/>
+        <source>Export Model Parameteres</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="536"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="540"/>
         <source>&amp;Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="541"/>
+        <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -457,13 +586,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="545"/>
+        <source>Undo last action in current model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="547"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="549"/>
-        <source>Ctrl+y</source>
+        <location filename="../MainWindow.cpp" line="548"/>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="565"/>
+        <source>System Parameters (Ctrl+Shift+Y)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="570"/>
+        <source>Opens the list of system parameters in current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -472,8 +616,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="552"/>
+        <source>Redo last undone action in current model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="554"/>
         <source>&amp;Undo History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="555"/>
+        <source>Undo History (Ctrl+Shift+U)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -482,13 +636,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="564"/>
-        <source>&amp;System Parameters</source>
+        <location filename="../MainWindow.cpp" line="560"/>
+        <source>Enable Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="566"/>
-        <source>Ctrl+Shift+y</source>
+        <location filename="../MainWindow.cpp" line="564"/>
+        <source>&amp;System Parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -497,8 +651,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="573"/>
+        <source>Open the HopsanValidationConfiguration Widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="576"/>
         <source>&amp;Data Explorer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="578"/>
+        <source>Open the Data Explorer Widget (Ctrl+Shift+d)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -507,8 +671,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="583"/>
+        <source>Open the Find Widget (Ctrl+f)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="586"/>
         <source>&amp;Reload file from disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="587"/>
+        <source>Reloads current file from disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -517,18 +691,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="592"/>
+        <source>Open NumHop Script Dialogue for this System (Ctrl+Shift+n)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="595"/>
         <source>&amp;Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="596"/>
-        <source>Ctrl+x</source>
+        <location filename="../MainWindow.cpp" line="597"/>
+        <source>Cut (Ctrl+X)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="597"/>
-        <source>Cut (Ctrl+X)</source>
+        <location filename="../MainWindow.cpp" line="600"/>
+        <source>Cut selected components.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -542,18 +721,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="604"/>
+        <source>Copy (Ctrl+C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="606"/>
+        <source>Copy selected components.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="608"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="609"/>
-        <source>Ctrl+v</source>
+        <location filename="../MainWindow.cpp" line="610"/>
+        <source>Paste (Ctrl+V)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="610"/>
-        <source>Paste (Ctrl+V)</source>
+        <location filename="../MainWindow.cpp" line="612"/>
+        <source>Paste copied components in current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -567,8 +756,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="619"/>
+        <source>Starts a new simulation of current model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="621"/>
         <source>Toggle Remote HopsanCore Connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="624"/>
+        <source>Connect or disconnect to a remote HopsanCore, this will determine if local or remote simulation is run, when calling simulate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -582,6 +781,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="631"/>
+        <source>Open debugger dialog to examine the current model in detail.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="633"/>
         <source>&amp;Optimize</source>
         <translation type="unfinished"></translation>
@@ -589,6 +793,11 @@
     <message>
         <location filename="../MainWindow.cpp" line="634"/>
         <source>Open Optimization Dialogue (Ctrl+Shift+Z)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="638"/>
+        <source>Open optimization dialog to initialize numerical optimization of current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -602,6 +811,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="645"/>
+        <source>Perform sensitivity analysis of current model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="647"/>
         <source>&amp;Measure Simulation Times</source>
         <translation type="unfinished"></translation>
@@ -609,6 +823,11 @@
     <message>
         <location filename="../MainWindow.cpp" line="648"/>
         <source>Measure Simulation Times</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="651"/>
+        <source>Measure simulation time for each component in current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -622,8 +841,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="659"/>
+        <source>Opens the list with all available plot variables from current model.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="662"/>
+        <source>Load Libraries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="665"/>
         <source>&amp;Model Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="666"/>
+        <source>Model Properties (Ctrl+Shift+M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="669"/>
+        <source>Opens a dialog with settings for the current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -632,8 +871,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="672"/>
+        <source>Options (Ctrl+Shift+O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="676"/>
+        <source>Open options dialog to change program settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="678"/>
         <source>&amp;Animate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="679"/>
+        <source>Animate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="682"/>
+        <source>Open current model in animation mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -642,8 +901,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="685"/>
+        <source>Align Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="686"/>
+        <source>Align selected components horizontally to last selected component.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="689"/>
         <source>&amp;Align Horizontal (by last selected)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="690"/>
+        <source>Align Horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="691"/>
+        <source>Align selected components vertically to last selected component.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -652,8 +931,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="695"/>
+        <source>Distribute Equidistantly Horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="696"/>
+        <source>Distributes all selected components equally (horizontally)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="699"/>
         <source>&amp;Distribute Equidistantly Vertically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="700"/>
+        <source>Distribute Equidistantly Vertically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="701"/>
+        <source>Distributes all selected components equally (vertically)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -662,8 +961,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="705"/>
+        <source>Rotate Left (Ctrl+E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="707"/>
+        <source>Rotate selected components counter-clockwise.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="710"/>
         <source>&amp;Rotate Right (Ctrl+R)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="711"/>
+        <source>Rotate Right (Ctrl+R)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="713"/>
+        <source>Rotate selected components clockwise.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -672,8 +991,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="717"/>
+        <source>Flip Horizontal (Ctrl+Shift+E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="719"/>
+        <source>Flip selected components horizontally.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="722"/>
         <source>&amp;Flip Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="723"/>
+        <source>Flip Vertical Ctrl+Shift+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="725"/>
+        <source>Flip selected components vertically.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -682,8 +1021,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="729"/>
+        <source>Reset Zoom (Ctrl+0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="732"/>
+        <source>Reset zoom to 100%.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="734"/>
         <source>&amp;Zoom In (Ctrl+Plus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="735"/>
+        <source>Zoom In (Ctrl+Plus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="738"/>
+        <source>Increase zoom level.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -692,8 +1051,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="741"/>
+        <source>Zoom Out (Ctrl+Minus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="744"/>
+        <source>Decrease zoom level.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="746"/>
         <source>&amp;Center View (Ctrl+Space)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="747"/>
+        <source>Center View (Ctrl+Space)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="750"/>
+        <source>Center view in current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -702,8 +1081,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="756"/>
+        <source>Show Component Names (Ctrl+N)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="761"/>
+        <source>Toggle  visibility of component names for all components.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="763"/>
         <source>&amp;Print Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="764"/>
+        <source>Print Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="766"/>
+        <source>Print current model.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -712,8 +1111,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="769"/>
+        <source>Export Model to PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="771"/>
+        <source>Export current model to Portable Document Format (PDF).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="773"/>
         <source>&amp;Export To PNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="774"/>
+        <source>Export Model to PNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="776"/>
+        <source>Export current model to Portable Network Graphics (PNG).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -722,8 +1141,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="779"/>
+        <source>Import Functional Mock-up Unit (FMU).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="782"/>
         <source>Import data file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="783"/>
+        <source>Import (PLO or CSV) data file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -732,13 +1161,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="788"/>
+        <source>Export model to Simulink S-function.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="791"/>
         <source>Export to Executable Model (32-bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="792"/>
+        <source>Export to Executable Model (32-bit).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="795"/>
         <source>Export to Executable Model (64-bit)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="796"/>
+        <source>Export to Executable Model (64-bit).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -748,27 +1192,42 @@
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="803"/>
+        <location filename="../MainWindow.cpp" line="804"/>
         <source>FMU 1.0 (64-bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="807"/>
+        <location filename="../MainWindow.cpp" line="808"/>
         <source>FMU 2.0 (32-bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="811"/>
+        <location filename="../MainWindow.cpp" line="812"/>
         <source>FMU 2.0 (64-bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="815"/>
+        <location filename="../MainWindow.cpp" line="816"/>
         <source>FMU 3.0 (32-bit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MainWindow.cpp" line="819"/>
+        <location filename="../MainWindow.cpp" line="820"/>
         <source>FMU 3.0 (64-bit)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="823"/>
+        <source>Export to Functional Mock-Up Interface (FMI)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="840"/>
+        <source>Export to Executable Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -777,8 +1236,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="852"/>
+        <source>Export model to LabVIEW Veristand.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="855"/>
         <source>Load Model Parameters from SSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="856"/>
+        <source>Load model parameter set from SSV.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -787,8 +1256,69 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="860"/>
+        <source>Load model parameter set from HPF.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="863"/>
+        <source>Import Model Parameteres</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="869"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="874"/>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="878"/>
+        <source>Issue Tracker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="882"/>
+        <source>User Guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="886"/>
+        <source>Release Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="890"/>
+        <location filename="../MainWindow.cpp" line="901"/>
+        <source>Check For New Versions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="893"/>
+        <source>Open Hopsan Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="896"/>
+        <source>Open Tutorials Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="906"/>
         <source>&amp;Show Unconnected Ports (Ctrl+T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="908"/>
+        <source>Show Unconnected Ports (Ctrl+T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="913"/>
+        <source>Toggle visibility of unconnected ports.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -797,8 +1327,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="918"/>
+        <source>Show Signal Components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="922"/>
+        <source>Toggle signal components visibility.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="934"/>
         <source>Calculate Losses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="940"/>
+        <source>Show energy or power losses from last simulation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -852,6 +1397,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.cpp" line="993"/>
+        <source>Example Models</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="997"/>
+        <source>Test Models</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1002"/>
+        <source>Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../MainWindow.cpp" line="1107"/>
         <source>File Toolbar</source>
         <translation type="unfinished"></translation>
@@ -879,6 +1439,39 @@
     <message>
         <location filename="../MainWindow.cpp" line="1223"/>
         <source>Tools Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1309"/>
+        <location filename="../MainWindow.cpp" line="1376"/>
+        <source>Trying to open </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1339"/>
+        <source>To browse or read about currently known issues you should see the Hopsan project issue tracker. You can also support development by reporting new issues or add feature requests.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1340"/>
+        <source>See the Hopsan web page for more information about bug reporting and issue tracking.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1342"/>
+        <source>Hopsan Issue Tracking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1344"/>
+        <source>To Hopsan webpage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1393"/>
+        <source>Set simulation time (in seconds).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1508,6 +2101,14 @@ Hint: Optimzations can be aborted without closing the dialog with the &quot;Abor
     </message>
 </context>
 <context>
+    <name>QApplication</name>
+    <message>
+        <location filename="../main.cpp" line="179"/>
+        <source>Unhandled argument: %1</source>
+        <translation>Felaktigt argument: %1</translation>
+    </message>
+</context>
+<context>
     <name>QDialog</name>
     <message>
         <location filename="../Widgets/UndoWidget.cpp" line="64"/>
@@ -1714,6 +2315,14 @@ Hint: Optimzations can be aborted without closing the dialog with the &quot;Abor
     </message>
 </context>
 <context>
+    <name>QSplashScreen</name>
+    <message>
+        <location filename="../main.cpp" line="194"/>
+        <source>Starting Hopsan...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QWidget</name>
     <message>
         <location filename="../LogVariable.cpp" line="1761"/>
@@ -1784,6 +2393,24 @@ Hint: Optimzations can be aborted without closing the dialog with the &quot;Abor
     <message>
         <location filename="../SimulationThreadHandler.cpp" line="452"/>
         <source>Simulation time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SimulationTimeEdit</name>
+    <message>
+        <location filename="../MainWindow.cpp" line="1629"/>
+        <source>Set start time for simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1635"/>
+        <source>Set step time for simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MainWindow.cpp" line="1641"/>
+        <source>Set stop time for simulation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
