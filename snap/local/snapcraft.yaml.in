@@ -112,13 +112,15 @@ parts:
 
   hopsan:
     source: .
-    plugin: qmake
-    qt-version: qt5
-    build-packages: [patchelf, unzip, cmake, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
+    plugin: cmake
+    cmake-generator: Ninja
+    cmake-parameters:
+      - -DBUILD_USER_DOCUMENTATION=ON
+      - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
+    build-packages: [patchelf, unzip, cmake, ninja-build, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
     stage-packages: [libzmq5, libmarkdown2, libhdf5-100, libhdf5-cpp-100, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
     override-build: |
       cd ../src
-      sed -e "s|UnitTests||" -i HopsanNG.pro
       ./packaging/prepareSourceCode.sh $(pwd) $(pwd) HOPSAN_BASE_VERSION HOPSAN_RELEASE_REVISION HOPSAN_FULL_RELEASE_VERSION HOPSAN_DEVELOPMENT_RELEASE false
       cd dependencies
       ./setupFmi4c.sh
@@ -128,12 +130,10 @@ parts:
       cd ..
       snapcraftctl build
 
-      ./packaging/copyInstallHopsan.sh $(pwd)/../src ${SNAPCRAFT_PART_INSTALL}
       install -Dm644 -t $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps HopsanGUI/graphics/uiicons/hopsan128x128.png
       install -Dm644 -t $SNAPCRAFT_PART_INSTALL/usr/share/applications HopsanGUI/HopsanGUI.desktop
       sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/128x128/apps/hopsan128x128.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Exec=.*|Exec=hopsan.gui|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Path=.*|Path=${SNAP}/bin|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
 
-    project-files: ['HopsanNG.pro']
     after: [desktop-qt5]
