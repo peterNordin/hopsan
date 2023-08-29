@@ -113,8 +113,9 @@ parts:
   hopsan:
     source: .
     plugin: cmake
-    cmake-generator: Ninja
-    cmake-parameters:
+#    cmake-generator: Ninja
+#    cmake-parameters:
+    configflags:
       - -DBUILD_USER_DOCUMENTATION=ON
       - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
     build-packages: [patchelf, unzip, cmake, ninja-build, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
