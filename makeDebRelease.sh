@@ -192,7 +192,8 @@ if [[ -d ${tmp_stage_directory} ]]; then
     echo "Reusing: ${tmp_stage_directory} as in exists, resetting --hard and clean -ffdx"
     pushd ${tmp_stage_directory} > /dev/null
     git remote set-url origin ${hopsancode_url}
-    git reset --hard ${branch_or_tag_to_clone}
+    git fetch --all --prune
+    git reset --hard origin/${branch_or_tag_to_clone}
     git clean -ffdx
     popd > /dev/null
 else
