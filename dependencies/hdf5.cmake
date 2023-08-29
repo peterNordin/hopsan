@@ -17,6 +17,8 @@ if (Hdf5_FOUND)
 elseif(HDF5_FOUND)
   # Repackage results from FindHDF5 Module as target
   message(STATUS "Building with HDF5 support")
+  message("${HDF5_C_DEFINITIONS}")
+  message("${HDF5_CXX_DEFINITIONS}")
   if (NOT TARGET module_hdf5-shared)
     add_library(module_hdf5-shared INTERFACE)
     add_library(module_hdf5_cpp-shared INTERFACE)
