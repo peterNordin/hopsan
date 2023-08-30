@@ -116,9 +116,36 @@ parts:
 #    cmake-generator: Ninja
     cmake-parameters:
 #    configflags:
+      - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_USER_DOCUMENTATION=ON
       - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
-    build-packages: [patchelf, unzip, cmake, ninja-build, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, texlive-latex-extra, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
+      - -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL
+    build-packages:
+      - patchelf
+      - unzip
+      - cmake
+      - ninja-build
+      - libtool-bin
+      - pkg-config
+      - doxygen
+      - graphviz
+      - dvipng
+      - inkscape
+      - texlive
+      - texlive-font-utils
+      - texlive-latex-extra
+      - libzmq3-dev
+      - libmsgpack-dev
+      - python3
+      - libhdf5-dev
+      - libmarkdown2-dev
+      - qt5-default
+      - qtbase5-dev
+      - qtbase5-private-dev
+      - libqt5webkit5-dev
+      - libqt5svg5-dev
+      - libqt5opengl5-dev
+      - libqwt-qt5-dev]
     stage-packages: [libzmq5, libmarkdown2, libhdf5-103, libhdf5-cpp-103, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
     override-build: |
       cd ../src
