@@ -10,7 +10,7 @@ license: (Apache-2.0 AND GPL-3.0)
 grade: HOPSAN_SNAP_GRADE
 confinement: strict
 
-base: core18
+base: core20
 
 compression: lzo
 
@@ -45,7 +45,7 @@ apps:
     plugs: [home]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   gui:
     command: bin/desktop-launch $SNAP/bin/hopsangui
@@ -56,7 +56,7 @@ apps:
       QT_QPA_PLATFORMTHEME: gtk3
       DISABLE_WAYLAND: 1
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   addresserver:
     command: bin/hopsanaddressserver
@@ -67,14 +67,14 @@ apps:
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   serverworker:
     command: bin/hopsanserverworker
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/7:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   remoteclient:
     command: bin/hopsanremoteclient
@@ -114,12 +114,12 @@ parts:
     source: .
     plugin: cmake
 #    cmake-generator: Ninja
-#    cmake-parameters:
-    configflags:
+    cmake-parameters:
+#    configflags:
       - -DBUILD_USER_DOCUMENTATION=ON
       - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
-    build-packages: [patchelf, unzip, cmake, ninja-build, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
-    stage-packages: [libzmq5, libmarkdown2, libhdf5-100, libhdf5-cpp-100, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
+    build-packages: [patchelf, unzip, cmake, ninja-build, libtool-bin, pkg-config, doxygen, graphviz, dvipng, inkscape, texlive, texlive-font-utils, texlive-latex-extra, libzmq3-dev, libmsgpack-dev, python3, libhdf5-dev, libmarkdown2-dev, qt5-default, qtbase5-dev, qtbase5-private-dev, libqt5webkit5-dev, libqt5svg5-dev, libqt5opengl5-dev, libqwt-qt5-dev]
+    stage-packages: [libzmq5, libmarkdown2, libhdf5-103, libhdf5-cpp-103, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
     override-build: |
       cd ../src
       ./packaging/prepareSourceCode.sh $(pwd) $(pwd) HOPSAN_BASE_VERSION HOPSAN_RELEASE_REVISION HOPSAN_FULL_RELEASE_VERSION HOPSAN_DEVELOPMENT_RELEASE false
