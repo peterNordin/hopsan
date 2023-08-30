@@ -41,14 +41,14 @@ plugs:
 
 apps:
   cli:
-    command: bin/hopsancli
+    command: usr/local/hopsan/bin/hopsancli
     plugs: [home]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   gui:
-    command: bin/desktop-launch $SNAP/bin/hopsangui
+    command: bin/desktop-launch $SNAP/usr/local/hopsan/bin/hopsangui
     plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings, opengl, network]
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
@@ -59,29 +59,29 @@ apps:
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   addresserver:
-    command: bin/hopsanaddressserver
+    command: usr/local/hopsan/bin/hopsanaddresserver
     plugs: [home, network, network-bind]
 
   server:
-    command: bin/hopsanserver
+    command: usr/local/hopsan/bin/hopsanserver
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   serverworker:
-    command: bin/hopsanserverworker
+    command: usr/local/hopsan/bin/hopsanserverworker
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
 
   remoteclient:
-    command: bin/hopsanremoteclient
+    command: usr/local/hopsan/bin/hopsanremoteclient
     plugs: [home, network]
 
   servermonitor:
-    command: bin/hopsanservermonitor
+    command: usr/local/hopsan/bin/hopsanservermonitor
     plugs: [home, network]
 
 parts:
@@ -113,13 +113,12 @@ parts:
   hopsan:
     source: .
     plugin: cmake
-#    cmake-generator: Ninja
+    cmake-generator: Ninja
     cmake-parameters:
-#    configflags:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_USER_DOCUMENTATION=ON
       - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
-      - -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/hopsan
     build-packages:
       - patchelf
       - unzip
@@ -166,6 +165,6 @@ parts:
       install -Dm644 -t $SNAPCRAFT_PART_INSTALL/usr/share/applications HopsanGUI/HopsanGUI.desktop
       sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/128x128/apps/hopsan128x128.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Exec=.*|Exec=hopsan.gui|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
-      sed -i 's|Path=.*|Path=${SNAP}/bin|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
+      sed -i 's|Path=.*|Path=${SNAP}/usr/local/hopsan/bin|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
 
     after: [desktop-qt5]
