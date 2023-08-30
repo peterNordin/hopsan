@@ -145,7 +145,7 @@ parts:
       - libqt5webkit5-dev
       - libqt5svg5-dev
       - libqt5opengl5-dev
-      - libqwt-qt5-dev]
+      - libqwt-qt5-dev
     stage-packages: [libzmq5, libmarkdown2, libhdf5-103, libhdf5-cpp-103, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
     override-build: |
       cd ../src
