@@ -23,7 +23,9 @@ override_dh_auto_build:
 
 #       Now build Hopsan using CMake
 	mkdir -p hopsan-build
-	source dependencies/setHopsanBuildPaths.sh; cd hopsan-build; cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=debian/hopsan/opt/hopsan -DBUILD_USER_DOCUMENTATION=ON -DBUILD_DEVELOPER_DOCUMENTATION=OFF ../
+	source dependencies/setHopsanBuildPaths.sh; cd hopsan-build; \
+		cmake   -GNinja -DCMAKE_BUILD_TYPE=Release -DBUILD_USER_DOCUMENTATION=ON -DBUILD_DEVELOPER_DOCUMENTATION=OFF \
+			-DCMAKE_INSTALL_PREFIX=../debian/hopsan/opt/hopsan ../
 	source dependencies/setHopsanBuildPaths.sh; cd hopsan-build; cmake --build . --target all
 
 override_dh_auto_clean:
