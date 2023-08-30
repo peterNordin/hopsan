@@ -120,40 +120,52 @@ parts:
       - -DBUILD_DEVELOPER_DOCUMENTATION=OFF
       - -DCMAKE_INSTALL_PREFIX=/usr/local/hopsan
     build-packages:
-      - patchelf
-      - unzip
       - cmake
-      - ninja-build
-      - libtool-bin
-      - pkg-config
       - doxygen
-      - graphviz
       - dvipng
+      - graphviz
       - inkscape
-      - texlive
-      - texlive-font-utils
-      - texlive-latex-extra
-      - libzmq3-dev
-      - libmsgpack-dev
-      - python3
       - libhdf5-dev
       - libmarkdown2-dev
+      - libmsgpack-dev
+      - libqt5opengl5-dev
+      - libqt5svg5-dev
+      - libqt5webkit5-dev
+      - libqwt-qt5-dev
+      - libtool-bin
+      - libzmq3-dev
+      - ninja-build
+      - patchelf
+      - pkg-config
+      - python3
       - qt5-default
       - qtbase5-dev
       - qtbase5-private-dev
-      - libqt5webkit5-dev
-      - libqt5svg5-dev
-      - libqt5opengl5-dev
-      - libqwt-qt5-dev
-    stage-packages: [libzmq5, libmarkdown2, libhdf5-103, libhdf5-cpp-103, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
+      - texlive
+      - texlive-font-utils
+      - texlive-latex-extra
+      - unzip
+    stage-packages:
+      - g++
+      - libhdf5-103
+      - libhdf5-cpp-103
+      - libmarkdown2
+      - libqt5opengl5
+      - libqt5test5
+      - libqt5webkit5
+      - libqt5xml5
+      - libqwt-qt5-6
+      - libzmq5
+      - make
+      - zip
     override-build: |
+      mkdir -p /root/dependencies-cache
       cd ../src
       git reset --hard
       git clean -ffdx
       ./packaging/prepareSourceCode.sh $(pwd) $(pwd) HOPSAN_BASE_VERSION HOPSAN_RELEASE_REVISION HOPSAN_FULL_RELEASE_VERSION HOPSAN_DEVELOPMENT_RELEASE false
       cd dependencies
-      mkdir -p /root/dependencies-cache
-      ./download-dependencies.py --cache /root/dependencies-cache --force fmi4c fmilibrary katex tclap
+      ./download-dependencies.py --cache /root/dependencies-cache fmi4c fmilibrary katex tclap
       ./setupFmi4c.sh
       ./setupFMILibrary.sh
       ./setupKatex.sh
