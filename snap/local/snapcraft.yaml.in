@@ -122,6 +122,8 @@ parts:
     stage-packages: [libzmq5, libmarkdown2, libhdf5-103, libhdf5-cpp-103, libqt5opengl5, libqwt-qt5-6, libqt5xml5, libqt5webkit5, g++, zip, libqt5test5, make]
     override-build: |
       cd ../src
+      git reset --hard
+      git clean -ffdx
       ./packaging/prepareSourceCode.sh $(pwd) $(pwd) HOPSAN_BASE_VERSION HOPSAN_RELEASE_REVISION HOPSAN_FULL_RELEASE_VERSION HOPSAN_DEVELOPMENT_RELEASE false
       cd dependencies
       mkdir -p /root/dependencies-cache
