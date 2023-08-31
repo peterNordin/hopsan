@@ -34,11 +34,10 @@ apps:
     command: usr/local/hopsan/bin/hopsangui
     common-id: com.github.hopsan.hopsangui
     extensions: [kde-neon]
-    plugs: [home, unity7, network, network-bind]
-    autostart: HopsanGUI.desktop
+    plugs: [home, unity7, network]
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
-      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
+#      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
       CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/11:$SNAP/usr/include
 
@@ -68,11 +67,11 @@ apps:
     command: usr/local/hopsan/bin/hopsanservermonitor
     plugs: [home, network]
 
-slots:
-  session-dbus-interface:
-    interface: dbus
-    name: com.github.hopsan.hopsangui
-    bus: session
+# slots:
+#   session-dbus-interface:
+#     interface: dbus
+#     name: com.github.hopsan.hopsangui
+#     bus: session
 
 parts:
   hopsan:
@@ -90,39 +89,28 @@ parts:
       - dvipng
       - graphviz
       - inkscape
+      - libgl-dev
       - libhdf5-dev
       - libmarkdown2-dev
       - libmsgpack-dev
-#      - libqt5opengl5-dev
-#      - libqt5svg5-dev
-#      - libqt5webkit5-dev
-#      - libqwt-qt5-dev
       - libtool-bin
       - libzmq3-dev
       - ninja-build
       - patchelf
       - pkg-config
       - python3
-#      - qtbase5-dev
-#      - qtbase5-private-dev
       - texlive
       - texlive-font-utils
       - texlive-latex-extra
       - unzip
     build-snaps:
-#      - kf5-5-108-qt-5-15-10-core22-sdk
-      - kf5-5-105-qt-5-15-9-core22
-      - kf5-5-105-qt-5-15-9-core22-sdk
+      - kf5-5-108-qt-5-15-10-core22-sdk
+      - kf5-5-108-qt-5-15-10-core22
     stage-packages:
       - g++
       - libhdf5-103
       - libhdf5-cpp-103
       - libmarkdown2
-#      - libqt5opengl5
-#      - libqt5test5
-#      - libqt5webkit5
-#      - libqt5xml5
-#      - libqwt-qt5-6
       - libzmq5
       - make
       - zip
@@ -148,4 +136,4 @@ parts:
       sed -i 's|Exec=.*|Exec=hopsan.gui|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Path=.*|Path=${SNAP}/usr/local/hopsan/bin|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
     build-environment:
-      - HOPSAN_BUILD_QT_HOME: /snap/kf5-5-105-qt-5-15-9-core22-sdk/current/usr
+      - HOPSAN_BUILD_QT_QMAKE: /snap/kf5-5-108-qt-5-15-10-core22-sdk/current/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
