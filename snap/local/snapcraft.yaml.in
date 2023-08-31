@@ -10,7 +10,7 @@ license: (Apache-2.0 AND GPL-3.0)
 grade: HOPSAN_SNAP_GRADE
 confinement: strict
 
-base: core20
+base: core22
 
 compression: lzo
 
@@ -22,41 +22,25 @@ layout:
   /usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/libpthread_nonshared.a:
     bind-file: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/libpthread_nonshared.a
 
-plugs:
-  # Gtk Common Themes support
-  # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
-  gsettings:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes:sounds-themes
-
 apps:
   cli:
     command: usr/local/hopsan/bin/hopsancli
     plugs: [home]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/11:$SNAP/usr/include
 
   gui:
-    command: bin/desktop-launch $SNAP/usr/local/hopsan/bin/hopsangui
-    plugs: [home, x11, wayland, desktop, desktop-legacy, gsettings, opengl, network]
+    command: usr/local/hopsan/bin/hopsangui
+    common-id: com.github.hopsan.hopsangui
+    extensions: [kde-neon]
+    plugs: [home, unity7, network, network-bind]
+    autostart: HopsanGUI.desktop
     desktop: usr/share/applications/HopsanGUI.desktop
     environment:
-      # gtk-common-themes support
-      QT_QPA_PLATFORMTHEME: gtk3
-      DISABLE_WAYLAND: 1
+      LIBGL_DRIVERS_PATH: $SNAP/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/11:$SNAP/usr/include
 
   addresserver:
     command: usr/local/hopsan/bin/hopsanaddresserver
@@ -67,14 +51,14 @@ apps:
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/11:$SNAP/usr/include
 
   serverworker:
     command: usr/local/hopsan/bin/hopsanserverworker
     plugs: [home, network, network-bind]
     environment:
       CPATH: $SNAP/usr/include:$SNAP/usr/include/${SNAPCRAFT_ARCH_TRIPLET}
-      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/9:$SNAP/usr/include
+      CPLUS_INCLUDE_PATH: $SNAP/usr/include/c++/11:$SNAP/usr/include
 
   remoteclient:
     command: usr/local/hopsan/bin/hopsanremoteclient
@@ -84,32 +68,13 @@ apps:
     command: usr/local/hopsan/bin/hopsanservermonitor
     plugs: [home, network]
 
+slots:
+  session-dbus-interface:
+    interface: dbus
+    name: com.github.hopsan.hopsangui
+    bus: session
+
 parts:
-
-  desktop-qt5:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-subdir: qt
-    plugin: make
-    make-parameters: ["FLAVOR=qt5"]
-    build-packages:
-      - qtbase5-dev
-      - dpkg-dev
-    stage-packages:
-      - libxkbcommon0
-      - ttf-ubuntu-font-family
-      - dmz-cursor-theme
-      - light-themes
-      - adwaita-icon-theme
-      - gnome-themes-standard
-      - shared-mime-info
-      - libqt5gui5
-      - libgdk-pixbuf2.0-0
-      - libgtk2.0-0
-      - libqt5svg5 # for loading icon themes which are svg
-      - try: [appmenu-qt5] # not available on core18
-      - locales-all
-      - qt5-gtk-platformtheme
-
   hopsan:
     source: .
     plugin: cmake
@@ -128,33 +93,36 @@ parts:
       - libhdf5-dev
       - libmarkdown2-dev
       - libmsgpack-dev
-      - libqt5opengl5-dev
-      - libqt5svg5-dev
-      - libqt5webkit5-dev
-      - libqwt-qt5-dev
+#      - libqt5opengl5-dev
+#      - libqt5svg5-dev
+#      - libqt5webkit5-dev
+#      - libqwt-qt5-dev
       - libtool-bin
       - libzmq3-dev
       - ninja-build
       - patchelf
       - pkg-config
       - python3
-      - qt5-default
-      - qtbase5-dev
-      - qtbase5-private-dev
+#      - qtbase5-dev
+#      - qtbase5-private-dev
       - texlive
       - texlive-font-utils
       - texlive-latex-extra
       - unzip
+    build-snaps:
+#      - kf5-5-108-qt-5-15-10-core22-sdk
+      - kf5-5-105-qt-5-15-9-core22
+      - kf5-5-105-qt-5-15-9-core22-sdk
     stage-packages:
       - g++
       - libhdf5-103
       - libhdf5-cpp-103
       - libmarkdown2
-      - libqt5opengl5
-      - libqt5test5
-      - libqt5webkit5
-      - libqt5xml5
-      - libqwt-qt5-6
+#      - libqt5opengl5
+#      - libqt5test5
+#      - libqt5webkit5
+#      - libqt5xml5
+#      - libqwt-qt5-6
       - libzmq5
       - make
       - zip
@@ -165,11 +133,12 @@ parts:
       git clean -ffdx
       ./packaging/prepareSourceCode.sh $(pwd) $(pwd) HOPSAN_BASE_VERSION HOPSAN_RELEASE_REVISION HOPSAN_FULL_RELEASE_VERSION HOPSAN_DEVELOPMENT_RELEASE false
       cd dependencies
-      ./download-dependencies.py --cache /root/dependencies-cache fmi4c fmilibrary katex tclap
+      ./download-dependencies.py --cache /root/dependencies-cache fmi4c fmilibrary katex tclap qwt
       ./setupFmi4c.sh
       ./setupFMILibrary.sh
       ./setupKatex.sh
       ./setupTclap.sh
+      ./setupQwt.sh
       cd ..
       snapcraftctl build
 
@@ -178,5 +147,5 @@ parts:
       sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/128x128/apps/hopsan128x128.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Exec=.*|Exec=hopsan.gui|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
       sed -i 's|Path=.*|Path=${SNAP}/usr/local/hopsan/bin|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/HopsanGUI.desktop
-
-    after: [desktop-qt5]
+    build-environment:
+      - HOPSAN_BUILD_QT_HOME: /snap/kf5-5-105-qt-5-15-9-core22-sdk/current/usr
