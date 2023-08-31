@@ -8,7 +8,7 @@ echo Using Bash version $BASH_VERSION
 if [[ ! $OSTYPE == darwin* ]] && [[ -z "${QT_SELECT}" ]]; then
     echo Set \(and export\) QT_SELECT if you want to choose Qt version
     echo Defaulting to Qt 5
-    export QT_SELECT=5
+#    export QT_SELECT=5
 fi
 
 # Figure out what qmake variant to use, prefer qmake, if available.
