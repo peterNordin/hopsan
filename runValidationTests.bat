@@ -1,21 +1,26 @@
-::$Id$
 :: Hopsan model validation script
 :: This script calls hopsancli to validate models for all hvc files found.
-:: Author: Peter Nordin 2012-05-31
+
 @echo off
 SETLOCAL EnableDelayedExpansion
 
 set failed=0
 set okPause=1
-if "%~1"=="nopause" (
+set hopsan_install_dir=%~dp0
+
+if not "%~1"=="" (
+  set "hopsan_install_dir=%~1"
+)
+
+if "%~2"=="nopause" (
   set okPause=0
 )
 
 for /F "delims==" %%x in ('dir /B /S *.hvc') do (
-  cd bin
+  pushd %hopsan_install_dir%\bin
   if not exist hopsancli_d.exe (
     if not exist hopsancli.exe (
-      echo hopsancli.exe not found!
+      echo "hopsancli.exe not found in %hopsan_install_dir%\bin"
       set failed=1
     )
   )
@@ -29,7 +34,7 @@ for /F "delims==" %%x in ('dir /B /S *.hvc') do (
     hopsancli.exe -t "%%x"
     if ERRORLEVEL 1 set failed=1 
   )
-  cd ..
+  popd
 )
 if %failed% EQU 1 (
   echo ERROR: There was at least one failure!

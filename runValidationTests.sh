@@ -1,20 +1,25 @@
 #!/bin/bash
-# $Id$
 
 # Shell script for running the validation tests on models
-# Author: Peter Nordin peter.nordin@liu.se
-# Date:   2012-05-29
 
 failed=0
-searchdir="$1"
 startDir=$(pwd)
-cd bin
+hopsaninstalldir=${startDir}
+searchdir=""
+if [[ $# -ge 1 ]]; then
+  hopsaninstalldir="$1"
+fi
+if [[ $# -ge 2 ]]; then
+  searchdir="$2"
+fi
+
+cd ${hopsaninstalldir}/bin
 if [ -x hopsancli_d ]; then
   cmd="./hopsancli_d"
 elif [ -x hopsancli ]; then
   cmd="./hopsancli"
 else
-  echo "Error: hopsancli not found"
+  echo "Error: hopsancli not found in ${hopsaninstalldir}/bin"
   exit 1
 fi
 
