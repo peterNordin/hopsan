@@ -7,6 +7,10 @@ environment:
 platform: x64
 configuration: Release
 install:
+  - dir %HOPSAN_BUILD_MINGW_HOME%
+  - dir %HOPSAN_BUILD_QT_HOME%
+  - dir %HOPSAN_BUILD_QT_HOME%\bin
+  - exit /b 1
   - git submodule update --init
   - cd dependencies
   - download-dependencies.py discount qwt zeromq cppzmq msgpack-c katex tclap fmi4c xerces asio zlib libzip dcplib
