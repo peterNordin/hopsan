@@ -8,8 +8,12 @@ platform: x64
 configuration: Release
 install:
   - dir %HOPSAN_BUILD_MINGW_HOME%
+  - dir %HOPSAN_BUILD_MINGW_HOME%\bin
   - dir %HOPSAN_BUILD_QT_HOME%
   - dir %HOPSAN_BUILD_QT_HOME%\bin
+  - cd dependencies
+  - call setHopsanBuildPaths.bat
+  - echo %mingw_path%
   - exit /b 1
   - git submodule update --init
   - cd dependencies
