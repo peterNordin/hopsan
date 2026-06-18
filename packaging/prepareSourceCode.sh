@@ -63,6 +63,8 @@ fi
 # Set splash screen version number
 sed "s|0\.00\.0|$base_version|g" -i HopsanGUI/graphics/splash.svg
 sed "s|20170000\.0000|$release_revision|g" -i HopsanGUI/graphics/splash.svg
+command -v inkscape
+echo  $?
 if [[ $(command -v ${inkscape_cmd} &> /dev/null) -eq 0 ]]; then
   if [[ $(inkscape --version | cut -d' ' -f2 | cut -d. -f1) -lt 1 ]]; then
     ${inkscape_cmd} ./HopsanGUI/graphics/splash.svg --export-background=rgb\(255,255,255\) --export-dpi=90 --export-png ./HopsanGUI/graphics/splash.png
